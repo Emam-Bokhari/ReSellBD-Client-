@@ -17,17 +17,11 @@ export default function NavigationLink({ path, route }: NavigationLinkProps) {
     <Link
       href={path}
       className={cn(
-        "transition-all duration-300 relative group",
-        isActive && "text-[#8750F7] font-semibold"
+        "text-[#1F2937] hover:text-[#D97706] transition-colors",
+        isActive && "text-[#F59E0B] font-semibold"
       )}
     >
       {route}
-      <span
-        className={cn(
-          "absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full",
-          isActive && "w-full"
-        )}
-      />
     </Link>
   );
 }
