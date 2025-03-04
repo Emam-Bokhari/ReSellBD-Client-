@@ -50,7 +50,7 @@ export default function Navbar() {
               </p>
               <p className="text-sm">
                 <Mail size={18} className="inline text-[#F59E0B]" />{" "}
-                resellbd@gmail.com
+                support@resellbd.com
               </p>
               <div className="text-sm flex items-center gap-1">
                 <Image src={usaFlag} width={25} height={25} alt="usa flag" />
@@ -60,14 +60,21 @@ export default function Navbar() {
 
             {/* signin button */}
             <div className=" border-2 border-green-500 flex flex-col md:flex-row md:justify-end gap-2 md:gap-4">
-              <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937]">
-                <LogInIcon size={18} />
-                SignIn With Your Account
-              </Button>
-              <Button variant="outline" className="text-[#1F2937]">
-                <UserPlus size={18} />
-                Create A New Account
-              </Button>
+              <Link href="/login" className="block ">
+                <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] cursor-pointer">
+                  <LogInIcon size={18} />
+                  SignIn With Your Account
+                </Button>
+              </Link>
+              <Link href="/register" className="block ">
+                <Button
+                  variant="outline"
+                  className="text-[#1F2937] cursor-pointer"
+                >
+                  <UserPlus size={18} />
+                  Create A New Account
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

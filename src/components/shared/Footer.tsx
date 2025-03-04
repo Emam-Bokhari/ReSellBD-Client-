@@ -35,35 +35,35 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-3">Quick Links</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="hover:text-[#F59E0B] duration-150 transition "
                 >
                   <Home size={18} className="inline mr-2" />
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/about"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
                   <Info size={18} className="inline mr-2" />
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/products"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
                   <ShoppingBag size={18} className="inline mr-2" />
                   Browse Products
-                </a>
+                </Link>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/contact"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
                   <Contact size={18} className="inline mr-2" />
