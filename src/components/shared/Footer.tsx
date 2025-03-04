@@ -1,4 +1,16 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import {
+  Contact,
+  Facebook,
+  Home,
+  Info,
+  Instagram,
+  Linkedin,
+  MailIcon,
+  MapPin,
+  PhoneCallIcon,
+  ShoppingBag,
+  Twitter,
+} from "lucide-react";
 import Container from "./Container";
 import Image from "next/image";
 import logo from "@/assets/Logo_Black.png";
@@ -27,6 +39,7 @@ export default function Footer() {
                   href="#"
                   className="hover:text-[#F59E0B] duration-150 transition "
                 >
+                  <Home size={18} className="inline mr-2" />
                   Home
                 </a>
               </li>
@@ -35,6 +48,7 @@ export default function Footer() {
                   href="#"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
+                  <Info size={18} className="inline mr-2" />
                   About Us
                 </a>
               </li>
@@ -43,6 +57,7 @@ export default function Footer() {
                   href="#"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
+                  <ShoppingBag size={18} className="inline mr-2" />
                   Browse Products
                 </a>
               </li>
@@ -51,6 +66,7 @@ export default function Footer() {
                   href="#"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
+                  <Contact size={18} className="inline mr-2" />
                   Contact Us
                 </a>
               </li>
@@ -60,9 +76,19 @@ export default function Footer() {
           {/* contact info */}
           <div>
             <h3 className="text-xl font-semibold mb-3">Contact</h3>
-            <p className="text-gray-400">Email: support@resellbd.com</p>
-            <p className="text-gray-400">Phone: +880 1234 567890</p>
-            <p className="text-gray-400">Dhaka, Bangladesh</p>
+            <div className="space-y-2">
+              <p className="text-gray-400">
+                <MailIcon size={18} className="inline mr-2" /> Email:
+                support@resellbd.com
+              </p>
+              <p className="text-gray-400">
+                <PhoneCallIcon size={18} className="inline mr-2" /> Phone: +880
+                1234 567890
+              </p>
+              <p className="text-gray-400">
+                <MapPin size={18} className="inline mr-2" /> Dhaka, Bangladesh
+              </p>
+            </div>
           </div>
 
           {/* social icons */}
