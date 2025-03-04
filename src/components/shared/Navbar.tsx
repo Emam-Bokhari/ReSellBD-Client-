@@ -86,7 +86,7 @@ export default function Navbar() {
               <NavigationLink route="Home" path="/" />
             </li>
             <li>
-              <NavigationLink route="Browse Products" path="#" />
+              <NavigationLink route="Browse Products" path="/products" />
             </li>
             <li>
               <NavigationLink route="About Us" path="#" />

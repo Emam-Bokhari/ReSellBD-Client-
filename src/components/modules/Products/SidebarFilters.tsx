@@ -16,7 +16,7 @@ const condition = ["New", "Like New", "Used", "Refurbished"];
 
 export default function SidebarFilters() {
   return (
-    <Card className="w-72 p-4 shadow-lg rounded-lg bg-white  ">
+    <Card className="w-72 p-4 shadow-lg rounded-lg bg-white max-h-screen overflow-y-auto ">
       {/* category filter */}
       <div>
         <h3 className="text-lg font-semibold text-[#1F2937]  mb-2">Category</h3>
@@ -44,7 +44,7 @@ export default function SidebarFilters() {
       </div>
 
       {/* districts filter */}
-      <div className="max-h-[700px] overflow-y-auto">
+      <div className="overflow-y-auto">
         <h3 className="text-lg font-semibold text-[#1F2937]  mb-2">Location</h3>
         <ul className="text-gray-600 dark:text-gray-300 space-y-1">
           {districts.map((item, index) => (
