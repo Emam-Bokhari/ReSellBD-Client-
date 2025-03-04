@@ -1,3 +1,4 @@
+import CategorySection from "@/components/modules/Home/Category";
 import HeroSection from "@/components/modules/Home/HeroSection";
 import { Fragment } from "react";
 
@@ -5,6 +6,7 @@ export default function HomePage() {
   return (
     <Fragment>
       <HeroSection />
+      <CategorySection />
     </Fragment>
   );
 }

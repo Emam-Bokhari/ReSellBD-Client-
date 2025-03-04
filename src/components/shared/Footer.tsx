@@ -18,12 +18,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-10 px-4">
+    <footer className="bg-gray-900 text-white py-10 px-4 mt-4">
       <Container>
         <div className="mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* brand section */}
           <div className="space-y-2">
-            <h2 className="text-2xl font-bold">ResellBD</h2>
+            <h2 className="text-2xl font-bold">ReSellBD</h2>
             <Image src={logo} width={80} height={80} alt="logo" />
             <p className="text-gray-400">
               Elevating your reselling experience with trust & excellence.
@@ -125,7 +125,7 @@ export default function Footer() {
 
         {/* copyright section */}
         <div className="mt-10 border-t border-gray-700 pt-6 text-center text-gray-400 text-sm">
-          © {new Date().getFullYear()} ResellBD. All rights reserved.
+          © {new Date().getFullYear()} ReSellBD. All rights reserved.
         </div>
       </Container>
     </footer>
