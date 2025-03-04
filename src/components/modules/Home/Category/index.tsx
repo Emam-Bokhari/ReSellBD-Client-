@@ -26,7 +26,9 @@ export default function CategorySection() {
   return (
     <Container>
       <div className="mt-4">
-        <h2 className="text-[#1F2937] text-3xl font-bold">Shop by Category</h2>
+        <h2 className="text-[#1F2937] text-2xl lg:text-3xl font-bold">
+          Shop by Category
+        </h2>
         {/* categories card */}
         <div className="mt-4">
           {/* card */}
