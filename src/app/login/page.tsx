@@ -2,26 +2,33 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import appleLogo from "@/assets/apple.png";
+import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 
-export default function RegistrationPage() {
+export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-md md:p-6 shadow-xl">
         <CardHeader>
           <CardTitle className=" text-xl lg:text-2xl font-bold text-center">
-            Create an Account
+            Login to Your Account
           </CardTitle>
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
-            <div>
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                placeholder="Enter your full name"
-                className="mt-1"
+            <Button type="submit" className="w-full cursor-not-allowed">
+              <Image
+                src={appleLogo}
+                width={22}
+                height={22}
+                className="invert mr-1"
+                alt="apple logo"
               />
-            </div>
+              Continue with Apple
+            </Button>
+            <Separator />
+            <p className="text-center mt-0 text-[#989BA4]">or Login with</p>
             <div>
               <Label htmlFor="identifier">Email or Phone Number</Label>
               <Input
@@ -40,26 +47,17 @@ export default function RegistrationPage() {
                 className="mt-1"
               />
             </div>
-            <div>
-              <Label htmlFor="confirm-password">Confirm Password</Label>
-              <Input
-                id="confirm-password"
-                type="password"
-                placeholder="Confirm your password"
-                className="mt-1"
-              />
-            </div>
             <Button
               type="submit"
               className="w-full mt-4 bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] text-lg"
             >
-              Register
+              Login
             </Button>
           </form>
           <p className="text-center text-sm text-gray-600 mt-4">
-            Already have an account?{" "}
-            <a href="/login" className="text-blue-500 hover:underline">
-              Log in
+            Don&apos;t have an account?{" "}
+            <a href="/register" className="text-blue-500 hover:underline">
+              Sign up
             </a>
           </p>
         </CardContent>
