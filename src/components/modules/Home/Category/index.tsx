@@ -9,6 +9,7 @@ import sports from "@/assets/sports.png";
 import clothes from "@/assets/clothes.png";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
+import SectionTitle from "@/components/shared/SectionTitle";
 
 // category data
 const categories = [
@@ -26,9 +27,8 @@ export default function CategorySection() {
   return (
     <Container>
       <div className="mt-4">
-        <h2 className="text-[#1F2937] text-2xl lg:text-3xl font-bold">
-          Shop by Category
-        </h2>
+        <SectionTitle title="Shop by Category" />
+
         {/* categories card */}
         <div className="mt-4">
           {/* card */}
