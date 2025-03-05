@@ -86,7 +86,7 @@ export default function Navbar() {
               <NavigationLink route="Home" path="/" />
             </li>
             <li>
-              <NavigationLink route="Browse Products" path="/products" />
+              <NavigationLink route="Products" path="/products" />
             </li>
             <li>
               <NavigationLink route="About Us" path="#" />
@@ -101,10 +101,12 @@ export default function Navbar() {
 
           {/* wishlist and profile */}
           <div className="flex items-center gap-4">
-            <Button variant="outline">
-              <Image src={loveIcon} width={22} height={22} alt="wishlist" />
-              Wishlist
-            </Button>
+            <Link href="/wishlist">
+              <Button variant="outline" className="cursor-pointer">
+                <Image src={loveIcon} width={22} height={22} alt="wishlist" />
+                Wishlist
+              </Button>
+            </Link>
             {/* Hamburger Menu for small devices */}
             <div className="lg:hidden">
               <DropdownMenu>
