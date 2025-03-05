@@ -8,6 +8,7 @@ import { TProduct } from "@/types";
 
 export default function ProductCard({ product }: { product: TProduct }) {
   const { title, category, images, price, status } = product || {};
+
   return (
     <Card className="w-full overflow-hidden shadow-lg rounded-lg p-0">
       <div className="w-full h-60 relative">

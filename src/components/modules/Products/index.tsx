@@ -9,8 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { TProduct } from "@/types";
 
-export default function AllProducts() {
+export default function AllProducts({ products }: { products: TProduct[] }) {
   return (
     <Container className="mt-4">
       <div className="flex gap-4">
@@ -34,8 +35,8 @@ export default function AllProducts() {
             </Select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 border-2 border-red-500 flex-1">
-            {Array.from({ length: 16 }).map((_, index) => (
-              <ProductCard key={index} />
+            {products.map((product) => (
+              <ProductCard key={product?._id} product={product} />
             ))}
           </div>
         </div>

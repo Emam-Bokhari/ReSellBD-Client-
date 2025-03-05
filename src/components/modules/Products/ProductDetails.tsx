@@ -55,9 +55,11 @@ export default function ProductDetails({ product }: { product: TProduct }) {
             <p className="text-2xl text-[#1F2937] font-semibold">
               BDT {product?.price}
             </p>
-            <p className="text-2xl text-red-500 font-semibold uppercase">
-              {product?.status}
-            </p>
+            {product?.status === "sold" && (
+              <p className="text-2xl text-red-500 font-semibold uppercase">
+                {product?.status}
+              </p>
+            )}
             <h3 className="text-2xl font-bold text-[#1F2937]">Description</h3>
             <p className="text-[#989BA4]">{product?.description}</p>
           </div>
