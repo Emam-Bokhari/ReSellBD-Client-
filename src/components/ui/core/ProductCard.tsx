@@ -48,7 +48,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
         {/* action buttons */}
         <div className="mt-4 flex justify-between">
           {/* details button */}
-          <Link href={`products/${product._id}`}>
+          <Link href={`products/${product?._id}`}>
             <button className="text-sm text-blue-500 hover:text-blue-700 font-semibold cursor-pointer">
               Details
             </button>

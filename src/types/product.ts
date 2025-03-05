@@ -18,8 +18,8 @@ export type TProduct = {
     | 'sports';
     brand?: string;
     location: string;
-    negotiable?: boolean;
-    warranty?: 'yes' | 'no';
+    negotiable?: 'yes' | 'no';
+    warranty?: string;
     contactNumber?: string;
     isDeleted?: false;
     createdAt: string;

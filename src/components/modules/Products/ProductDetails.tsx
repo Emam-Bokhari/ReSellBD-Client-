@@ -1,19 +1,12 @@
 "use client";
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
+import { TProduct } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function ProductDetails() {
-  const [selectedImage, setSelectedImage] = useState(
-    "https://shorturl.at/EPSnR" // default image
-  );
-
-  const thumbnails = [
-    "https://shorturl.at/EPSnR",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s",
-    "https://shorturl.at/EPSnR",
-  ];
+export default function ProductDetails({ product }: { product: TProduct }) {
+  const [selectedImage, setSelectedImage] = useState(product?.images[0]);
 
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
@@ -34,7 +27,7 @@ export default function ProductDetails() {
             />
           </div>
           <div className="flex gap-2 mt-4">
-            {thumbnails.map((img, index) => (
+            {product?.images?.map((img, index) => (
               <div
                 key={index}
                 className="relative w-[100px] h-[100px] cursor-pointer"
@@ -55,21 +48,18 @@ export default function ProductDetails() {
         {/* right: product info */}
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold text-[#1F2937]">Product Title</h2>
-            <p className="text-[#1F2937]">Product Category</p>
-            <p className="text-2xl text-[#1F2937] font-semibold">£995</p>
-            <h3 className="text-2xl font-bold text-[#1F2937]">Description</h3>
-            <p className="text-[#989BA4]">
-              Taking cues from mid-century designs, this handcrafted armchair
-              has a solid birch frame, deep seating, and feather-wrapped
-              cushions. Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit. Expedita corrupti pariatur optio, ipsum, asperiores
-              doloremque sunt ut ea praesentium quibusdam deserunt dignissimos
-              voluptatibus, modi consequatur beatae neque enim a? Asperiores
-              suscipit ducimus voluptates deleniti nisi, doloremque, cum
-              temporibus sapiente cumque consequatur distinctio sequi eligendi
-              labore laudantium dolor excepturi possimus est.
+            <h2 className="text-3xl font-bold text-[#1F2937] capitalize">
+              {product?.title}
+            </h2>
+            <p className="text-[#1F2937] capitalize">{product?.category}</p>
+            <p className="text-2xl text-[#1F2937] font-semibold">
+              BDT {product?.price}
             </p>
+            <p className="text-2xl text-red-500 font-semibold uppercase">
+              {product?.status}
+            </p>
+            <h3 className="text-2xl font-bold text-[#1F2937]">Description</h3>
+            <p className="text-[#989BA4]">{product?.description}</p>
           </div>
 
           {/* additional information */}
@@ -81,35 +71,46 @@ export default function ProductDetails() {
               <div className="space-y-2 text-[#1F2937]">
                 <div className="flex gap-2">
                   <p className="font-medium">Condition:</p>
-                  <p>New</p>
+                  <p>{product?.condition}</p>
                 </div>
-                <div className="flex gap-2">
-                  <p className="font-medium">Brand:</p>
-                  <p>Brand Name</p>
-                </div>
+                {product?.brand && (
+                  <div className="flex gap-2">
+                    <p className="font-medium">Brand:</p>
+                    <p className="capitalize">{product?.brand}</p>
+                  </div>
+                )}
                 <div className="flex gap-2">
                   <p className="font-medium">Location:</p>
-                  <p>City, Country</p>
+                  <p className="capitalize">{product?.location}</p>
                 </div>
-                <div className="flex gap-2">
-                  <p className="font-medium">Negotiable:</p>
-                  <p>Yes</p>
-                </div>
-                <div className="flex gap-2">
-                  <p className="font-medium">Warranty:</p>
-                  <p>2 Years</p>
-                </div>
-                <div className="flex gap-2">
-                  <p className="font-medium">Contact Number:</p>
-                  <p>+1234567890</p>
-                </div>
+                {product?.negotiable && (
+                  <div className="flex gap-2">
+                    <p className="font-medium">Negotiable:</p>
+                    <p>{product?.negotiable}</p>
+                  </div>
+                )}
+                {product?.warranty && (
+                  <div className="flex gap-2">
+                    <p className="font-medium">Warranty:</p>
+                    <p>{product?.warranty}</p>
+                  </div>
+                )}
+                {product?.contactNumber && (
+                  <div className="flex gap-2">
+                    <p className="font-medium">Contact Number:</p>
+                    <p>{product?.contactNumber}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           {/* button */}
           <div className="flex gap-4">
-            <Button className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] font-bold text-base cursor-pointer">
+            <Button
+              disabled={product?.status === "sold"}
+              className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] font-bold text-base cursor-pointer"
+            >
               Add to Cart
             </Button>
           </div>
