@@ -1,33 +1,42 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { registerValidation } from "./register.validation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import appleLogo from "@/assets/apple.png";
+import { Separator } from "@/components/ui/separator";
+import {
+  FieldValues,
+  Form,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  Form,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { registerUser } from "@/services/Auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginValidation } from "./login.validation";
+import { loginUser } from "@/services/Auth";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function RegistrationForm() {
+export default function LoginForm() {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
   const router = useRouter();
+
   const form = useForm({
-    resolver: zodResolver(registerValidation),
+    resolver: zodResolver(loginValidation),
     defaultValues: {
-      name: "",
       identifier: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -37,16 +46,20 @@ export default function RegistrationForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     try {
-      const response = await registerUser(data);
-      // console.log(response);
+      const response = await loginUser(data);
+      console.log(response);
       if (response?.success) {
         toast.success(response?.message);
-        router.push("/login");
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
+        }
       } else {
-        toast.error(response?.error[0]?.message);
+        toast.error(response.error[0]?.message);
       }
     } catch (error: any) {
-      toast.error("Something went wrong!");
+      toast.error("Something went wring!");
     }
   };
 
@@ -54,27 +67,25 @@ export default function RegistrationForm() {
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-md md:p-6 shadow-xl">
         <CardHeader>
-          <CardTitle className="text-xl lg:text-2xl font-bold text-center">
-            Create an Account
+          <CardTitle className=" text-xl lg:text-2xl font-bold text-center">
+            Login to Your Account
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
+          <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Enter your full name" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
+              <Button type="submit" className="w-full cursor-not-allowed">
+                <Image
+                  src={appleLogo}
+                  width={22}
+                  height={22}
+                  className="invert mr-1"
+                  alt="apple logo"
+                />
+                Continue with Apple
+              </Button>
+              <Separator />
+              <p className="text-center mt-0 text-[#989BA4]">or Login with</p>
               <FormField
                 control={form.control}
                 name="identifier"
@@ -91,7 +102,6 @@ export default function RegistrationForm() {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="password"
@@ -109,39 +119,18 @@ export default function RegistrationForm() {
                   </FormItem>
                 )}
               />
-
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        placeholder="Confirm your password"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
               <Button
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full mt-4 bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] text-lg cursor-pointer"
               >
-                {isSubmitting ? "Registering..." : "Register"}
+                {isSubmitting ? "Logging..." : "Login"}
               </Button>
             </form>
-          </Form>
-
+          </FormProvider>
           <p className="text-center text-sm text-gray-600 mt-4">
-            Already have an account?{" "}
-            <Link href="/login" className="text-blue-500 hover:underline">
-              Log in
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="text-blue-500 hover:underline">
+              Sign up
             </Link>
           </p>
         </CardContent>
