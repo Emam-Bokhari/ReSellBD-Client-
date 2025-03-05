@@ -10,3 +10,13 @@ export const getAllProducts = async () => {
         return Error(error)
     }
 }
+
+export const getProductById = async (id: string) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`);
+        const data = await res.json();
+        return data;
+    } catch (error: any) {
+        return Error(error)
+    }
+}
