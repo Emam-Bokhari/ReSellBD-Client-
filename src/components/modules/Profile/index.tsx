@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FaApple, FaBuilding, FaMapMarkerAlt, FaUser } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUser } from "react-icons/fa";
 import Image from "next/image";
 import Container from "@/components/shared/Container";
 import personalSiteLogo from "@/assets/personal.png";

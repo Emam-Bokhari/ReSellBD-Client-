@@ -137,7 +137,7 @@ export default function Navbar() {
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
                         <Link
-                          href="#"
+                          href="/profile"
                           className="flex gap-2 text-base items-center "
                         >
                           <User className="w-6 h-6" />
