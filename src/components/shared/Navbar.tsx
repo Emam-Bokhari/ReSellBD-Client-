@@ -31,14 +31,15 @@ import {
 } from "../ui/dropdown-menu";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
-import { useUser } from "@/context/userContent";
 import { Fragment } from "react";
 import { logOut } from "@/services/Auth";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/userContext";
 
 export default function Navbar() {
   const router = useRouter();
   const { user, setIsLoading } = useUser();
+  console.log(user);
 
   const handleLogout = async () => {
     await logOut();
