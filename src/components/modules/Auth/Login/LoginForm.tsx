@@ -7,7 +7,6 @@ import appleLogo from "@/assets/apple.png";
 import { Separator } from "@/components/ui/separator";
 import {
   FieldValues,
-  Form,
   FormProvider,
   SubmitHandler,
   useForm,
@@ -52,6 +51,7 @@ export default function LoginForm() {
         toast.success(response?.message);
         if (redirect) {
           router.push(redirect);
+          router.refresh();
         } else {
           router.push("/");
         }

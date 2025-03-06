@@ -10,9 +10,11 @@ import {
   Home,
   LayoutDashboard,
   LogInIcon,
+  LogOutIcon,
   Mail,
   Phone,
   ShoppingBag,
+  User,
   UserCircle2,
   UserPlus,
 } from "lucide-react";
@@ -28,8 +30,23 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import Link from "next/link";
+import { Separator } from "../ui/separator";
+import { useUser } from "@/context/userContent";
+import { Fragment } from "react";
+import { logOut } from "@/services/Auth";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
+  const { user, setIsLoading } = useUser();
+
+  const handleLogout = async () => {
+    await logOut();
+    setIsLoading(true);
+
+    router.push("/");
+  };
+
   return (
     <Container>
       <nav className="border-2 border-red-500 mt-4">
@@ -107,10 +124,51 @@ export default function Navbar() {
                 Wishlist
               </Button>
             </Link>
-            {/* Hamburger Menu for small devices */}
+
+            {/* profile dropdown visible for large devices */}
+            {user && (
+              <div className="hidden lg:flex">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild className="cursor-pointer">
+                    <UserCircle2 size={28} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <Link
+                          href="#"
+                          className="flex gap-2 text-base items-center "
+                        >
+                          <User className="w-6 h-6" />
+                          Profile
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link
+                          href="/dashboard"
+                          className="flex items-center gap-2 text-base"
+                        >
+                          <LayoutDashboard className="w-6 h-6" />
+                          Dashboard
+                        </Link>
+                      </DropdownMenuItem>
+                      <Separator />
+                      <DropdownMenuItem onClick={handleLogout}>
+                        <span className="flex gap-2 items-center text-base cursor-pointer">
+                          <LogOutIcon className="w-6 h-6" />
+                          Logout
+                        </span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            )}
+
+            {/* full dropdown visible for small devices */}
             <div className="lg:hidden">
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+                <DropdownMenuTrigger asChild className="cursor-pointer">
                   <UserCircle2 size={28} />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
@@ -118,42 +176,84 @@ export default function Navbar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
                     <DropdownMenuItem>
-                      <Link href="/" className="flex gap-2">
-                        <Home className="w-4 h-4  " />
+                      <Link
+                        href="/"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <Home className="w-6 h-6  " />
                         Home
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="#" className="flex gap-2">
-                        <ShoppingBag className="w-4 h-4" />{" "}
-                        {/* Browse Products */}
-                        Browse Products
+                      <Link
+                        href="/profile"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <User className="w-6 h-6  " />
+                        Profile
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="#" className="flex gap-2">
-                        <Building2 className="w-4 h-4" />
+                      <Link
+                        href="/products"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <ShoppingBag className="w-6 h-6" />{" "}
+                        {/* Browse Products */}
+                        Products
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link
+                        href="#"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <Building2 className="w-6 h-6" />
                         About Us
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="#" className="flex gap-2">
-                        <Mail className="w-4 h-4" />
+                      <Link
+                        href="#"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <Mail className="w-6 h-6" />
                         Contact Us
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Link href="#" className="flex gap-2">
-                        <HelpCircle className="w-4 h-4" />
+                      <Link
+                        href="#"
+                        className="flex gap-2 text-base items-center"
+                      >
+                        <HelpCircle className="w-6 h-6" />
                         FAQs
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link href="/dashboard" className="flex gap-2">
-                        <LayoutDashboard className="w-4 h-4" />
-                        Dashboard
-                      </Link>
-                    </DropdownMenuItem>
+                    {user && (
+                      <Fragment>
+                        <DropdownMenuItem>
+                          <Link
+                            href="/dashboard"
+                            className="flex gap-2 text-base items-center"
+                          >
+                            <LayoutDashboard className="w-6 h-6" />
+                            Dashboard
+                          </Link>
+                        </DropdownMenuItem>
+
+                        <Separator />
+                        <DropdownMenuItem>
+                          <Link
+                            href="#"
+                            className="flex gap-2 text-base items-center"
+                          >
+                            <LogOutIcon className="w-6 h-6" />
+                            Logout
+                          </Link>
+                        </DropdownMenuItem>
+                      </Fragment>
+                    )}
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>

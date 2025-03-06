@@ -1,6 +1,7 @@
 "use server"
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
+import { jwtDecode } from "jwt-decode";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const registerUser = async (userData: FieldValues) => {
@@ -39,4 +40,20 @@ export const loginUser = async (userData: FieldValues) => {
     } catch (error: any) {
         return Error(error)
     }
+}
+
+export const getCurrentUser = async () => {
+    const accessToken = (await cookies()).get("accessToken")?.value;
+    let decodedData = null;
+
+    if (accessToken) {
+        decodedData = await jwtDecode(accessToken);
+        return decodedData;
+    } else {
+        return null;
+    }
+};
+
+export const logOut = async () => {
+    (await cookies()).delete("accessToken")
 }
