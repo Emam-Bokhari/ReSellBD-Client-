@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import failedIcon from "@/assets/payment-failed.png";
 
-export default function PaymentSuccessPage() {
+export default function PaymentFailedPage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <Card className="p-4 w-[350px] md:w-[500px]">
