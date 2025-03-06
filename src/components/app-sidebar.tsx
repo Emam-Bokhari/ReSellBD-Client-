@@ -1,6 +1,4 @@
-import * as React from "react";
-import { GalleryVerticalEnd } from "lucide-react";
-
+import logo from "@/assets/Logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -15,6 +13,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import Image from "next/image";
 
 const data = {
   navMain: [
@@ -67,13 +66,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <GalleryVerticalEnd className="size-4" />
-                </div>
+              <Link href="/">
+                <Image src={logo} width={35} height={35} alt="logo" />
+
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Documentation</span>
-                  <span className="">v1.0.0</span>
+                  <span className="font-semibold">ReSellBD</span>
+                  <span>New Deals, Endless Possibilities</span>
                 </div>
               </Link>
             </SidebarMenuButton>
