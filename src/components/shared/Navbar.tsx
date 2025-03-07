@@ -32,20 +32,18 @@ import {
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 import { Fragment } from "react";
-import { logOut } from "@/services/Auth";
-import { useRouter } from "next/navigation";
-import { useUser } from "@/context/userContext";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useAppDispatch } from "@/redux/hooks";
+import { logout } from "@/redux/features/authSlice";
 
 export default function Navbar() {
-  const router = useRouter();
-  const { user, setIsLoading } = useUser();
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useAppDispatch();
+
   console.log(user);
-
-  const handleLogout = async () => {
-    await logOut();
-    setIsLoading(true);
-
-    router.push("/");
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -54,9 +52,11 @@ export default function Navbar() {
         <div className="flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between">
           {/* left side */}
           {/* logo */}
-          <div className="border-2 border-blue-500">
-            <Image src={logo} width={80} height={80} alt="Logo" />
-          </div>
+          <Link href="/" className="block">
+            <div className="border-2 border-blue-500">
+              <Image src={logo} width={80} height={80} alt="Logo" />
+            </div>
+          </Link>
 
           {/* right side */}
           <div className="space-y-4">
@@ -244,14 +244,11 @@ export default function Navbar() {
                         </DropdownMenuItem>
 
                         <Separator />
-                        <DropdownMenuItem>
-                          <Link
-                            href="#"
-                            className="flex gap-2 text-base items-center"
-                          >
+                        <DropdownMenuItem onClick={handleLogout}>
+                          <span className="flex gap-2 text-base items-center cursor-pointer">
                             <LogOutIcon className="w-6 h-6" />
                             Logout
-                          </Link>
+                          </span>
                         </DropdownMenuItem>
                       </Fragment>
                     )}

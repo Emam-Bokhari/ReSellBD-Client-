@@ -5,9 +5,15 @@ import { Card, CardContent } from "../card";
 import { Button } from "../button";
 import Link from "next/link";
 import { TProduct } from "@/types";
+import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }: { product: TProduct }) {
+  const router = useRouter();
   const { title, category, images, price, status } = product || {};
+
+  const handleBuyNow = () => {
+    router.push(`/checkout?id=${product._id}`);
+  };
 
   return (
     <Card className="w-full overflow-hidden shadow-lg rounded-lg p-0">
@@ -55,14 +61,14 @@ export default function ProductCard({ product }: { product: TProduct }) {
             </button>
           </Link>
           {/* buy now button */}
-          <Link href="#">
-            <Button
-              disabled={status === "sold"}
-              className="bg-[#F59E0B] text-white hover:bg-[#D97706] cursor-pointer"
-            >
-              Buy Now
-            </Button>
-          </Link>
+
+          <Button
+            onClick={handleBuyNow}
+            disabled={status === "sold"}
+            className="bg-[#F59E0B] text-white hover:bg-[#D97706] cursor-pointer"
+          >
+            Buy Now
+          </Button>
         </div>
       </CardContent>
     </Card>

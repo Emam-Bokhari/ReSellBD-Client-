@@ -3,13 +3,18 @@ import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
 import { TProduct } from "@/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function ProductDetails({ product }: { product: TProduct }) {
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
-
+  const router = useRouter();
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
+  };
+
+  const handleBuyNow = () => {
+    router.push(`/checkout?id=${product._id}`);
   };
 
   return (
@@ -110,10 +115,11 @@ export default function ProductDetails({ product }: { product: TProduct }) {
           {/* button */}
           <div className="flex gap-4">
             <Button
+              onClick={handleBuyNow}
               disabled={product?.status === "sold"}
               className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] font-bold text-base cursor-pointer"
             >
-              Add to Cart
+              Buy Now
             </Button>
           </div>
         </div>

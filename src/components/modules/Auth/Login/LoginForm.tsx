@@ -26,7 +26,13 @@ import { loginUser } from "@/services/Auth";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { verifyToken } from "@/lib/verifyToken";
+import { setUser } from "@/redux/features/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+
 export default function LoginForm() {
+  const dispatch = useAppDispatch();
+
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirectPath");
   const router = useRouter();
@@ -49,6 +55,9 @@ export default function LoginForm() {
 
       if (response?.success) {
         toast.success(response?.message);
+        const user = verifyToken(response.data?.token);
+
+        dispatch(setUser({ user: user, token: response.data?.token }));
         if (redirect) {
           router.push(redirect);
         } else {
