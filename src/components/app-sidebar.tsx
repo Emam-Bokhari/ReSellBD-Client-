@@ -34,7 +34,7 @@ const data = {
       items: [
         {
           title: "Products",
-          url: "#",
+          url: "/user/dashboard/products",
         },
         {
           title: "Add Product",

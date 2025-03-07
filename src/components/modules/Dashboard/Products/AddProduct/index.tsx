@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { districts } from "@/constants/districts";
 import { getToken } from "@/redux/features/getToken";
 import { addProduct } from "@/services/Product";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import {
   FieldValues,
@@ -30,6 +31,8 @@ import {
   useForm,
 } from "react-hook-form";
 import { toast } from "sonner";
+import { addProductValidation } from "./addProduct.validation";
+import { useRouter } from "next/navigation";
 
 const conditionOptions = [
   { value: "new", label: "New" },
@@ -60,6 +63,7 @@ const locationOptions = districts.map((value) => ({
 }));
 
 export default function AddProductForm() {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       title: "",
@@ -74,6 +78,7 @@ export default function AddProductForm() {
       contactNumber: "",
       images: [{ value: "" }],
     },
+    resolver: zodResolver(addProductValidation),
   });
 
   const { append: appendImage, fields: imageFields } = useFieldArray({
@@ -98,7 +103,8 @@ export default function AddProductForm() {
     try {
       const response = await addProduct(modifiedData, token);
       if (response?.success) {
-        toast.success(response?.message);
+        toast.success("Product is created successfully");
+        router.push("/user/dashboard/products");
       } else {
         toast.error(response.error[0]?.message);
       }

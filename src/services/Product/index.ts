@@ -29,9 +29,26 @@ export const getAllProducts = async () => {
         const data = await res.json();
         return data;
     } catch (error: any) {
-        return Error(error)
+        throw new Error(error)
     }
 }
+
+// export const getProductsBySpecificUser = async (token: string) => {
+//     try {
+//         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/byUser`, {
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": { token }
+//             }
+//         })
+//         const data = res.json();
+//         return data;
+
+//     } catch (error: any) {
+//         throw new Error(error)
+//     }
+// }
 
 export const getProductById = async (id: string) => {
     try {
@@ -39,6 +56,6 @@ export const getProductById = async (id: string) => {
         const data = await res.json();
         return data;
     } catch (error: any) {
-        return Error(error)
+        throw new Error(error)
     }
 }

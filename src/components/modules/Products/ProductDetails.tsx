@@ -78,7 +78,7 @@ export default function ProductDetails({ product }: { product: TProduct }) {
               <div className="space-y-2 text-[#1F2937]">
                 <div className="flex gap-2">
                   <p className="font-medium">Condition:</p>
-                  <p>{product?.condition}</p>
+                  <p className="capitalize">{product?.condition}</p>
                 </div>
                 {product?.brand && (
                   <div className="flex gap-2">
@@ -93,7 +93,7 @@ export default function ProductDetails({ product }: { product: TProduct }) {
                 {product?.negotiable && (
                   <div className="flex gap-2">
                     <p className="font-medium">Negotiable:</p>
-                    <p>{product?.negotiable}</p>
+                    <p className="capitalize">{product?.negotiable}</p>
                   </div>
                 )}
                 {product?.warranty && (
