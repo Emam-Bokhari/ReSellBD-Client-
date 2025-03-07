@@ -20,7 +20,7 @@ export type TProduct = {
     location: string;
     negotiable?: 'yes' | 'no';
     warranty?: string;
-    contactNumber?: string;
+    contactNumber: string;
     isDeleted?: false;
     createdAt: string;
     updatedAt: string;

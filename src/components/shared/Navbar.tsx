@@ -41,7 +41,6 @@ export default function Navbar() {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
 
-  console.log(user);
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -146,7 +145,7 @@ export default function Navbar() {
                       </DropdownMenuItem>
                       <DropdownMenuItem>
                         <Link
-                          href="/dashboard"
+                          href="/user/dashboard"
                           className="flex items-center gap-2 text-base"
                         >
                           <LayoutDashboard className="w-6 h-6" />
@@ -235,7 +234,7 @@ export default function Navbar() {
                       <Fragment>
                         <DropdownMenuItem>
                           <Link
-                            href="/dashboard"
+                            href="/user/dashboard"
                             className="flex gap-2 text-base items-center"
                           >
                             <LayoutDashboard className="w-6 h-6" />

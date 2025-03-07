@@ -23,7 +23,7 @@ const data = {
       items: [
         {
           title: "Home",
-          url: "/dashboard",
+          url: "/user/dashboard",
         },
       ],
     },
@@ -38,7 +38,7 @@ const data = {
         },
         {
           title: "Add Product",
-          url: "#",
+          url: "/user/dashboard/products/add-product",
         },
       ],
     },
