@@ -1,3 +1,10 @@
+type TUserId = {
+    _id: string;
+    name: string;
+    identifier: string;
+    role: string;
+};
+
 export type TProduct = {
     _id: string;
     title: string;
@@ -5,7 +12,7 @@ export type TProduct = {
     price: number;
     condition: 'new' | 'likeNew' | 'used' | 'refurbished';
     images: string[];
-    userID?: string;
+    userID?: TUserId;
     status?: 'available' | 'sold';
     category:
     | 'mobiles'
