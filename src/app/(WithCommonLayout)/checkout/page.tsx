@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Checkout from "@/components/modules/Checkout";
+import { getProductById } from "@/services/Product";
 
 export default async function CheckoutPage({
   searchParams,
@@ -8,9 +9,11 @@ export default async function CheckoutPage({
 }) {
   const productId = (await searchParams)?.id || "";
   console.log(productId);
+  const { data: product } = await getProductById(productId);
+  console.log(product);
   return (
     <Fragment>
-      <Checkout />
+      <Checkout product={product} />
     </Fragment>
   );
 }

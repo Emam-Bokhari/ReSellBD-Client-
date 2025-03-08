@@ -109,7 +109,7 @@ export default function Navbar() {
               <NavigationLink route="About Us" path="#" />
             </li>
             <li>
-              <NavigationLink route="Contact Us" path="#" />
+              <NavigationLink route="Contact Us" path="/contactUs" />
             </li>
             <li>
               <NavigationLink route="FAQs" path="/faq" />
@@ -214,7 +214,7 @@ export default function Navbar() {
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Link
-                        href="#"
+                        href="/contactUs"
                         className="flex gap-2 text-base items-center"
                       >
                         <Mail className="w-6 h-6" />

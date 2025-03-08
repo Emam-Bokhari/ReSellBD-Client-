@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { TProduct } from "@/types";
 import Image from "next/image";
 
-export default function Checkout() {
+export default function Checkout({ product }: { product: TProduct }) {
   return (
     <Container className="mt-4">
       <div className=" mx-auto  grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -52,17 +53,22 @@ export default function Checkout() {
             <CardContent className="p-4 space-y-4">
               <div className="flex items-center gap-4">
                 <Image
-                  src="https://shorturl.at/YSWvd"
+                  src={product?.images?.[0]}
                   alt="Product Image"
                   width={100}
                   height={100}
                   className="rounded-md"
                 />
                 <div>
-                  <p className="text-lg font-semibold">Product Title</p>
-                  <p className="text-sm text-gray-600">Category: Electronics</p>
+                  <p className="text-lg font-semibold">{product?.title}</p>
+                  <p className="text-sm text-gray-600">
+                    Category: {product?.category}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Location: {product?.location}
+                  </p>
                   <p className="text-lg font-bold text-green-600">
-                    Price: USD 1,850.00
+                    Price: BDT {product?.price}
                   </p>
                 </div>
               </div>
@@ -98,7 +104,7 @@ export default function Checkout() {
                   <strong>Total Items:</strong> 1 Item
                 </p>
                 <p>
-                  <strong>Price:</strong> USD 1,850.00
+                  <strong>Price:</strong> BDT {product?.price}
                 </p>
               </div>
 
@@ -108,10 +114,10 @@ export default function Checkout() {
               <p className="font-semibold">Seller Information</p>
               <div className="space-y-2 text-sm">
                 <p>
-                  <strong>Name:</strong> John Doe
+                  <strong>Name:</strong> {product?.userID?.name}
                 </p>
                 <p>
-                  <strong>Email:</strong> john.doe@example.com
+                  <strong>Contact:</strong> {product?.userID?.identifier}
                 </p>
               </div>
 

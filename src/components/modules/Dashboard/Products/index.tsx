@@ -91,11 +91,11 @@ export default function ManageProducts() {
         const firstImage = images?.[0];
 
         return firstImage ? (
-          <div className="w-[50px] h-[50px]  rounded-lg">
+          <div className="w-[60px] h-[60px] overflow-hidden rounded-lg">
             <Image
               src={firstImage}
-              width={50}
-              height={50}
+              width={60}
+              height={60}
               alt="Thumbnail Image"
               className="object-cover"
             />
@@ -139,7 +139,7 @@ export default function ManageProducts() {
           <div className="flex items-center">
             <span
               style={{ backgroundColor: randomColor }}
-              className="px-3 py-1 rounded-full text-white text-xs font-medium"
+              className="px-3 py-1 rounded-full text-white text-xs font-medium capitalize"
             >
               {row.getValue("category")}
             </span>
@@ -175,7 +175,7 @@ export default function ManageProducts() {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="cursor-pointer">
-              <Button variant="outline" className="h-8 w-8 p-4 capitalize">
+              <Button variant="outline" className=" p-4 capitalize">
                 {product.status}
               </Button>
             </DropdownMenuTrigger>
@@ -284,7 +284,7 @@ export default function ManageProducts() {
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm "
+          className="w-full"
         />
 
         <div>
@@ -362,7 +362,7 @@ export default function ManageProducts() {
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between py-4 mt-4">
+      <div className="flex items-center justify-between mt-4">
         <div>
           <p>
             Page {table.getState().pagination.pageIndex + 1} of{" "}

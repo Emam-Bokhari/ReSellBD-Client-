@@ -184,11 +184,11 @@ export default function AddProductForm() {
               </Label>
               <Button
                 variant="outline"
-                className="size-8 cursor-pointer"
+                className="size-8 cursor-pointer bg-[#F59E0B] hover:bg-[#D97706]"
                 onClick={addImage}
                 type="button"
               >
-                <Plus className="text-primary" />
+                <Plus className=" text-white" />
               </Button>
             </div>
 
