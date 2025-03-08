@@ -36,13 +36,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/authSlice";
+import { logoutFromCookie } from "@/services/Auth";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const user = useSelector((state: RootState) => state.auth.user);
+  const router = useRouter();
+  const user = useSelector((state: RootState) => state.auth?.user);
   const dispatch = useAppDispatch();
+  console.log(user);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout());
+    await logoutFromCookie();
+    router.push("/");
   };
 
   return (
@@ -106,7 +112,7 @@ export default function Navbar() {
               <NavigationLink route="Products" path="/products" />
             </li>
             <li>
-              <NavigationLink route="About Us" path="#" />
+              <NavigationLink route="About Us" path="/aboutUs" />
             </li>
             <li>
               <NavigationLink route="Contact Us" path="/contactUs" />
@@ -205,7 +211,7 @@ export default function Navbar() {
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Link
-                        href="#"
+                        href="/aboutUs"
                         className="flex gap-2 text-base items-center"
                       >
                         <Building2 className="w-6 h-6" />

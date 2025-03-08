@@ -52,13 +52,15 @@ export default function Checkout({ product }: { product: TProduct }) {
           <Card>
             <CardContent className="p-4 space-y-4">
               <div className="flex items-center gap-4">
-                <Image
-                  src={product?.images?.[0]}
-                  alt="Product Image"
-                  width={100}
-                  height={100}
-                  className="rounded-md"
-                />
+                {product?.images && (
+                  <Image
+                    src={product?.images?.[0]}
+                    alt="Product Image"
+                    width={100}
+                    height={100}
+                    className="rounded-md"
+                  />
+                )}
                 <div>
                   <p className="text-lg font-semibold">{product?.title}</p>
                   <p className="text-sm text-gray-600">
