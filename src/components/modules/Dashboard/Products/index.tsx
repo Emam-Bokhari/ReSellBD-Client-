@@ -212,7 +212,6 @@ export default function ManageProducts() {
       enableHiding: false,
       cell: ({ row }) => {
         const product = row.original;
-        console.log(product, "original");
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="cursor-pointer">
@@ -228,8 +227,7 @@ export default function ManageProducts() {
 
               <DropdownMenuItem>
                 <Link
-                  //   href={`/dashboard/projects/update-project/${project?._id}`}
-                  href="#"
+                  href={`/user/dashboard/products/update-product/${product?._id}`}
                   className="flex gap-2"
                 >
                   <FaEdit className="mr-2 text-green-500" /> Edit
