@@ -112,7 +112,7 @@ export default function Navbar() {
               <NavigationLink route="Contact Us" path="#" />
             </li>
             <li>
-              <NavigationLink route="FAQs" path="#" />
+              <NavigationLink route="FAQs" path="/faq" />
             </li>
           </ul>
 
@@ -223,7 +223,7 @@ export default function Navbar() {
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <Link
-                        href="#"
+                        href="/faq"
                         className="flex gap-2 text-base items-center"
                       >
                         <HelpCircle className="w-6 h-6" />
