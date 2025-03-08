@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Button } from "@/components/ui/button";
 import {
@@ -108,7 +107,7 @@ export default function AddProductForm() {
       } else {
         toast.error(response.error[0]?.message);
       }
-    } catch (error: any) {
+    } catch {
       toast.error("Something went wrong!");
     }
   };

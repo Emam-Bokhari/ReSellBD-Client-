@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -45,7 +44,7 @@ export default function RegistrationForm() {
       } else {
         toast.error(response?.error[0]?.message);
       }
-    } catch (error: any) {
+    } catch {
       toast.error("Something went wrong!");
     }
   };

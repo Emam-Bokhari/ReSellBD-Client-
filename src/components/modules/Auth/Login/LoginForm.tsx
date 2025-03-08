@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -66,7 +65,7 @@ export default function LoginForm() {
       } else {
         toast.error(response.error[0]?.message);
       }
-    } catch (error: any) {
+    } catch {
       toast.error("Something went wring!");
     }
   };
