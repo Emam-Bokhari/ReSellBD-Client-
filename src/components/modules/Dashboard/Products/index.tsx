@@ -42,6 +42,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { TProduct } from "@/types";
 import { getToken } from "@/redux/features/getToken";
+import { deleteProductById, updateProductStatusById } from "@/services/Product";
 
 export default function ManageProducts() {
   const [products, setProducts] = React.useState<TProduct[]>([]);
@@ -81,6 +82,36 @@ export default function ManageProducts() {
 
     fetchProducts();
   }, [token]);
+
+  // delete a product
+  const handleDeleteProduct = async (id: string) => {
+    try {
+      const response = await deleteProductById(id, token);
+      if (response?.success) {
+        toast.success("Product deleted successfully");
+        // router.push("/user/dashboard/products");
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
+  };
+
+  // product status update
+  const handleUpdateProductStatus = async (id: string, status: string) => {
+    try {
+      const response = await updateProductStatusById(id, { status }, token);
+      if (response?.success) {
+        toast.success("Product status updated successfully");
+        // router.push("/user/dashboard/products");
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
+  };
 
   const columns: ColumnDef<TProduct>[] = [
     {
@@ -172,6 +203,9 @@ export default function ManageProducts() {
       header: "Status",
       cell: ({ row }) => {
         const product = row.original;
+        const handleStatusChange = (newStatus: string) => {
+          handleUpdateProductStatus(product._id, newStatus);
+        };
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="cursor-pointer">
@@ -182,10 +216,16 @@ export default function ManageProducts() {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Status</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={() => handleStatusChange("available")}
+                className="cursor-pointer"
+              >
                 Available
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem
+                onClick={() => handleStatusChange("sold")}
+                className="cursor-pointer"
+              >
                 Sold
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -235,7 +275,7 @@ export default function ManageProducts() {
               </DropdownMenuItem>
 
               <DropdownMenuItem
-                // onClick={() => handleDeleteProject(project?._id)}
+                onClick={() => handleDeleteProduct(product?._id)}
                 className="cursor-pointer"
               >
                 <FaTrash className="mr-2 text-red-600" />

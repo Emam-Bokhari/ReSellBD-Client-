@@ -332,7 +332,9 @@ export default function AddProductForm() {
                 name="negotiable"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Negotiable</FormLabel>
+                    <FormLabel>
+                      Negotiable <span className="text-red-500">*</span>
+                    </FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
