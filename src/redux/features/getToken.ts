@@ -1,6 +1,6 @@
 export const getToken = () => {
     if (typeof window !== "undefined") {
-        const persistedAuth = localStorage.getItem("persist:auth");
+        const persistedAuth = sessionStorage.getItem("persist:auth");
         if (persistedAuth) {
             const parsedAuth = JSON.parse(persistedAuth);
             const token = parsedAuth.token ? JSON.parse(parsedAuth.token) : null;
