@@ -48,11 +48,11 @@ const data = {
       items: [
         {
           title: "Purchases History",
-          url: "#",
+          url: "/user/dashboard/orders/purchase-history",
         },
         {
           title: "Sales History",
-          url: "#",
+          url: "/user/dashboard/orders/sales-history",
         },
       ],
     },
