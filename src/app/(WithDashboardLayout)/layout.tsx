@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import DynamicBreadcrumb from "@/components/shared/Dashboard/DynamicBreadcrumb";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -29,19 +30,7 @@ export default async function DashboardLayout({
             <div className="flex items-center gap-2 px-3">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-2 h-4" />
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
-                      Building Your Application
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator className="hidden md:block" />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+              <DynamicBreadcrumb />
             </div>
           </header>
           {children}
