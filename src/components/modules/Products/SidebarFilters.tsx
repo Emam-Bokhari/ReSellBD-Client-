@@ -6,20 +6,64 @@ import { X } from "lucide-react"; // Close icon
 import { districts } from "@/constants/districts";
 
 const categories = [
-  "Property",
-  "Home",
-  "Vehicles",
-  "Electronics",
-  "Mobile",
-  "Pets",
-  "Sports",
-  "Clothes",
+  "property",
+  "home",
+  "vehicles",
+  "electronics",
+  "mobiles",
+  "pets",
+  "sports",
+  "clothes",
 ];
 
-const condition = ["New", "Like New", "Used", "Refurbished"];
+const condition = ["new", "like new", "used", "refurbished"];
 
-export default function SidebarFilters() {
+export default function SidebarFilters({
+  selectedCategories,
+  setSelectedCategories,
+  selectedConditions,
+  setSelectedConditions,
+  selectedDistricts,
+  setSelectedDistricts,
+  setIsAvailable,
+}: {
+  selectedCategories: string[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedConditions: string[];
+  setSelectedConditions: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedDistricts: string[];
+  setSelectedDistricts: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsAvailable: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const toggleCategory = (category: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((cat) => cat !== category)
+        : [...prev, category]
+    );
+  };
+
+  const toggleCondition = (conditionItem: string) => {
+    setSelectedConditions((prev) =>
+      prev.includes(conditionItem)
+        ? prev.filter((item) => item !== conditionItem)
+        : [...prev, conditionItem]
+    );
+  };
+
+  const toggleDistrict = (district: string) => {
+    setSelectedDistricts((prev) =>
+      prev.includes(district)
+        ? prev.filter((item) => item !== district)
+        : [...prev, district]
+    );
+  };
+
+  const toggleAvailability = () => {
+    setIsAvailable((prev) => !prev);
+  };
 
   return (
     <>
@@ -36,7 +80,15 @@ export default function SidebarFilters() {
 
       {/* Sidebar for large devices */}
       <div className="hidden lg:block">
-        <SidebarContent />
+        <SidebarContent
+          selectedCategories={selectedCategories}
+          toggleCategory={toggleCategory}
+          selectedConditions={selectedConditions}
+          toggleCondition={toggleCondition}
+          selectedDistricts={selectedDistricts}
+          toggleDistrict={toggleDistrict}
+          toggleAvailability={toggleAvailability}
+        />
       </div>
 
       {/* Small devices - Sidebar overlay */}
@@ -53,7 +105,15 @@ export default function SidebarFilters() {
               <X className="w-6 h-6" />
             </Button>
 
-            <SidebarContent />
+            <SidebarContent
+              selectedCategories={selectedCategories}
+              toggleCategory={toggleCategory}
+              selectedConditions={selectedConditions}
+              toggleCondition={toggleCondition}
+              selectedDistricts={selectedDistricts}
+              toggleDistrict={toggleDistrict}
+              toggleAvailability={toggleAvailability}
+            />
           </div>
 
           {/* Click Outside to Close */}
@@ -64,7 +124,23 @@ export default function SidebarFilters() {
   );
 }
 
-function SidebarContent() {
+function SidebarContent({
+  selectedCategories,
+  toggleCategory,
+  selectedConditions,
+  toggleCondition,
+  selectedDistricts,
+  toggleDistrict,
+  toggleAvailability,
+}: {
+  selectedCategories: string[];
+  toggleCategory: (category: string) => void;
+  selectedConditions: string[];
+  toggleCondition: (condition: string) => void;
+  selectedDistricts: string[];
+  toggleDistrict: (district: string) => void;
+  toggleAvailability: () => void;
+}) {
   return (
     <Card className="p-4 w-72 lg:shadow-lg rounded-none lg:rounded-lg   bg-transparent lg:bg-white max-h-screen overflow-y-auto">
       {/* Category filter */}
@@ -73,7 +149,12 @@ function SidebarContent() {
         <ul className="text-gray-600 space-y-1">
           {categories.map((item, index) => (
             <li key={index} className="flex items-center">
-              <input type="checkbox" className="mr-2" />
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={selectedCategories.includes(item)}
+                onChange={() => toggleCategory(item)}
+              />
               {item}
             </li>
           ))}
@@ -86,7 +167,12 @@ function SidebarContent() {
         <ul className="text-gray-600 space-y-1">
           {condition.map((item, index) => (
             <li key={index} className="flex items-center">
-              <input type="checkbox" className="mr-2" />
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={selectedConditions.includes(item)}
+                onChange={() => toggleCondition(item)}
+              />
               {item}
             </li>
           ))}
@@ -99,7 +185,12 @@ function SidebarContent() {
         <ul className="text-gray-600 dark:text-gray-300 space-y-1">
           {districts.map((item, index) => (
             <li key={index} className="flex items-center">
-              <input type="checkbox" className="mr-2" />
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={selectedDistricts.includes(item)}
+                onChange={() => toggleDistrict(item)}
+              />
               {item}
             </li>
           ))}
@@ -113,7 +204,11 @@ function SidebarContent() {
         </h3>
         <ul className="text-gray-600 space-y-1">
           <li className="flex items-center">
-            <input type="checkbox" className="mr-2" />
+            <input
+              onChange={toggleAvailability}
+              type="checkbox"
+              className="mr-2"
+            />
             Available for sale
           </li>
         </ul>

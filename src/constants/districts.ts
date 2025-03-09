@@ -1,9 +1,9 @@
 export const districts = [
-    "Bagerhat", "Bandarban", "Barguna", "Barishal", "Bhola", "Bogura", "Brahmanbaria", "Chandpur", "Chattogram", "Chuadanga",
-    "Comilla", "Cox's Bazar", "Dhaka", "Dinajpur", "Faridpur", "Feni", "Gaibandha", "Gazipur", "Gopalganj", "Habiganj",
-    "Jamalpur", "Jashore", "Jhalokathi", "Jhenaidah", "Joypurhat", "Khagrachari", "Khulna", "Kishoreganj", "Kurigram", "Kushtia",
-    "Lakshmipur", "Lalmonirhat", "Madaripur", "Magura", "Manikganj", "Meherpur", "Moulvibazar", "Munshiganj", "Mymensingh", "Naogaon",
-    "Narail", "Narayanganj", "Narsingdi", "Natore", "Netrokona", "Nilphamari", "Noakhali", "Pabna", "Panchagarh", "Patuakhali",
-    "Pirojpur", "Rajbari", "Rajshahi", "Rangamati", "Rangpur", "Satkhira", "Shariatpur", "Sherpur", "Sirajganj", "Sunamganj",
-    "Sylhet", "Tangail", "Thakurgaon"
+    "bagerhat", "bandarban", "barguna", "barishal", "bhola", "bogura", "brahmanbaria", "chandpur", "chattogram", "chuadanga",
+    "comilla", "cox's bazar", "dhaka", "dinajpur", "faridpur", "feni", "gaibandha", "gazipur", "gopalganj", "habiganj",
+    "jamalpur", "jashore", "jhalokathi", "jhenaidah", "joypurhat", "khagrachari", "khulna", "kishoreganj", "kurigram", "kushtia",
+    "lakshmipur", "lalmonirhat", "madaripur", "magura", "manikganj", "meherpur", "moulvibazar", "munshiganj", "mymensingh", "naogaon",
+    "narail", "narayanganj", "narsingdi", "natore", "netrokona", "nilphamari", "noakhali", "pabna", "panchagarh", "patuakhali",
+    "pirojpur", "rajbari", "rajshahi", "rangamati", "rangpur", "satkhira", "shariatpur", "sherpur", "sirajganj", "sunamganj",
+    "sylhet", "tangail", "thakurgaon"
 ];

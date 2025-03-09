@@ -58,7 +58,7 @@ const negotiableOptions = [
 
 const locationOptions = districts.map((value) => ({
   value: value,
-  label: value,
+  label: value.replace(/\b\w/g, (char) => char.toUpperCase()),
 }));
 
 export default function AddProductForm() {

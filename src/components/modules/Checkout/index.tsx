@@ -46,7 +46,6 @@ export default function Checkout({ product }: { product: TProduct }) {
     const itemID = product._id;
     try {
       const response = await addOrder({ itemID }, token);
-      console.log(response);
       if (response?.success) {
         toast.success("Your order placed successfully");
 
