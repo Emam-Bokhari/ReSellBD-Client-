@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { getToken } from "@/redux/features/getToken";
+import { addOrder } from "@/services/Order";
 import { IUser, TProduct } from "@/types";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -14,7 +15,7 @@ export default function Checkout({ product }: { product: TProduct }) {
   const [profile, setProfile] = useState<IUser | undefined>(undefined);
   const token = getToken();
 
-  // fetch products from API
+  // fetch profile data from API
   React.useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -40,6 +41,26 @@ export default function Checkout({ product }: { product: TProduct }) {
 
     fetchProfile();
   }, [token]);
+
+  const handleConfirmPay = async () => {
+    const itemID = product._id;
+    try {
+      const response = await addOrder({ itemID }, token);
+      console.log(response);
+      if (response?.success) {
+        toast.success("Your order placed successfully");
+
+        // redirect user to the payment URL
+        if (response?.data?.paymentUrl) {
+          window.location.href = response.data.paymentUrl;
+        }
+      } else {
+        toast.error(response?.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
+  };
 
   return (
     <Container className="mt-4">
@@ -188,7 +209,10 @@ export default function Checkout({ product }: { product: TProduct }) {
                     I agree to ResellBD Terms & Conditions and Privacy Policy
                   </span>
                 </Label>
-                <Button className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-white cursor-pointer">
+                <Button
+                  onClick={handleConfirmPay}
+                  className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-white cursor-pointer"
+                >
                   Confirm & Pay
                 </Button>
               </div>
