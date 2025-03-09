@@ -4,10 +4,43 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { TProduct } from "@/types";
+import { getToken } from "@/redux/features/getToken";
+import { IUser, TProduct } from "@/types";
 import Image from "next/image";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function Checkout({ product }: { product: TProduct }) {
+  const [profile, setProfile] = useState<IUser | undefined>(undefined);
+  const token = getToken();
+
+  // fetch products from API
+  React.useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_API}/users/me`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
+        const result = await response.json();
+        setProfile(result?.data);
+      } catch (error: any) {
+        toast.error(error.message);
+      }
+    };
+
+    fetchProfile();
+  }, [token]);
+
   return (
     <Container className="mt-4">
       <div className=" mx-auto  grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -34,16 +67,18 @@ export default function Checkout({ product }: { product: TProduct }) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <Label>Full Name</Label>
-                  <p className="text-gray-800">Ahmed Bin Ali</p>
+                  <p className="text-gray-800">{profile?.name}</p>
                 </div>
                 <div>
-                  <Label>Email</Label>
-                  <p className="text-gray-800">ahmedbinali@gmail.com</p>
+                  <Label>Email/Phone</Label>
+                  <p className="text-gray-800">{profile?.identifier}</p>
                 </div>
-                <div>
-                  <Label>Phone Number</Label>
-                  <p className="text-gray-800">+221402040785</p>
-                </div>
+                {profile?.city && (
+                  <div>
+                    <Label>Location</Label>
+                    <p className="text-gray-800">{profile?.city}</p>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -129,14 +164,16 @@ export default function Checkout({ product }: { product: TProduct }) {
               <p className="font-semibold">Buyer Information</p>
               <div className="space-y-2 text-sm">
                 <p>
-                  <strong>Name:</strong> Jane Smith
+                  <strong>Name:</strong> {profile?.name}
                 </p>
                 <p>
-                  <strong>Email:</strong> jane.smith@example.com
+                  <strong>Contact:</strong> {profile?.identifier}
                 </p>
-                <p>
-                  <strong>Location:</strong> Dhaka, Bangladesh
-                </p>
+                {profile?.city && (
+                  <p>
+                    <strong>Location:</strong> {profile?.city}
+                  </p>
+                )}
               </div>
             </CardContent>
           </Card>

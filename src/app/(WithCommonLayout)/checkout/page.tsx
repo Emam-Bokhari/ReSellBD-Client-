@@ -8,9 +8,9 @@ export default async function CheckoutPage({
   searchParams: Promise<{ id?: string }>;
 }) {
   const productId = (await searchParams)?.id || "";
-  console.log(productId);
+
   const { data: product } = await getProductById(productId);
-  console.log(product);
+
   return (
     <Fragment>
       <Checkout product={product} />
