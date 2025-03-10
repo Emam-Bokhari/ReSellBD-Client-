@@ -14,7 +14,7 @@ import ProfileModal from "./ProfileModal";
 export default function Profile({ profileData }: { profileData: IUser }) {
   const [profile, setProfile] = useState(profileData);
 
-  const handleSave = async (updatedProfile) => {
+  const handleSave = async (updatedProfile: any) => {
     setProfile(updatedProfile);
     console.log("Profile Updated:", updatedProfile);
   };

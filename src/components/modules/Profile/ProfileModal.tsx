@@ -21,8 +21,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { getToken } from "@/redux/features/getToken";
+import { IUser } from "@/types";
 
-export default function ProfileModal({ profile, onSave }) {
+export default function ProfileModal({
+  profile,
+  onSave,
+}: {
+  profile: IUser;
+  onSave: (updateProfile: any) => void;
+}) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: profile?.name || "",
@@ -38,11 +45,11 @@ export default function ProfileModal({ profile, onSave }) {
     website: profile?.website || "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleGenderChange = (value) => {
+  const handleGenderChange = (value: "male" | "female") => {
     setFormData({ ...formData, gender: value || "male" });
   };
 
@@ -50,7 +57,7 @@ export default function ProfileModal({ profile, onSave }) {
 
   const handleSubmit = async () => {
     // URL validation function
-    const isValidURL = (url) => {
+    const isValidURL = (url: string) => {
       if (!url) return true;
       const regex = /^(https?:\/\/)?([\w.-]+\.[a-z]{2,})(\/\S*)?$/i;
       return regex.test(url);

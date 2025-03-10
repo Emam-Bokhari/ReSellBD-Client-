@@ -6,10 +6,32 @@ import { Button } from "../button";
 import Link from "next/link";
 import { TProduct } from "@/types";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "@/redux/features/wishlist/wishlistSlice";
+import { RootState } from "@/redux/store";
+import { FaHeart } from "react-icons/fa6";
 
 export default function ProductCard({ product }: { product: TProduct }) {
   const router = useRouter();
   const { title, category, images, price, status } = product || {};
+
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+
+  const isInWishlist = wishlistItems.some((item) => item._id === product._id);
+
+  const handleAddToWishlist = () => {
+    if (!isInWishlist) {
+      dispatch(addToWishlist(product));
+    }
+  };
+
+  const handleRemoveFromWishlist = () => {
+    dispatch(removeFromWishlist(product._id));
+  };
 
   const handleBuyNow = () => {
     router.push(`/checkout?id=${product._id}`);
@@ -45,11 +67,20 @@ export default function ProductCard({ product }: { product: TProduct }) {
         {/* category & wishlist */}
         <div className="flex justify-between items-center text-gray-600 text-sm">
           <span className="capitalize">{category}</span>
-          <Link href="#">
-            <button className="hover:text-red-500 cursor-pointer">
+          <button
+            onClick={
+              isInWishlist ? handleRemoveFromWishlist : handleAddToWishlist
+            }
+            className={`hover:text-red-500 cursor-pointer ${
+              isInWishlist ? "text-red-500" : ""
+            }`}
+          >
+            {isInWishlist ? (
+              <FaHeart className="w-5 h-5 text-red-500" />
+            ) : (
               <Heart className="w-5 h-5" />
-            </button>
-          </Link>
+            )}
+          </button>
         </div>
 
         {/* action buttons */}

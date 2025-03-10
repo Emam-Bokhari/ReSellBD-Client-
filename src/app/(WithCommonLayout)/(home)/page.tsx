@@ -1,3 +1,4 @@
+import FeatureAds from "@/components/modules/Home/Ads";
 import CategorySection from "@/components/modules/Home/Category";
 import HeroSection from "@/components/modules/Home/HeroSection";
 import ProductSection from "@/components/modules/Home/Product";
@@ -9,6 +10,7 @@ export default function HomePage() {
       <HeroSection />
       <CategorySection />
       <ProductSection />
+      <FeatureAds />
     </Fragment>
   );
 }
