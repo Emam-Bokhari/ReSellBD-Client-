@@ -13,7 +13,7 @@ import pattern from "@/assets/pattern.jpg";
 import Container from "@/components/shared/Container";
 import visionImage from "@/assets/vision.jpg";
 
-export default function AboutUs() {
+export default function AboutUsPage() {
   return (
     <Container className="mt-4">
       <div className="w-full">

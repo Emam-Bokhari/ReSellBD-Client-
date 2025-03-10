@@ -6,20 +6,15 @@ type Role = keyof typeof roleBasedPrivateRoutes;
 export const authRoutes = ["/login", "/register"]
 
 const roleBasedPrivateRoutes = {
-    user: [/^\/user/, /^\/checkout/],
-    admin: [/^\/admin/, /^\/user/, /^\/checkout/],
+    user: [/^\/user/, /^\/checkout/, /^\/profile/, /^\/dashboard\/user\/products/, /^\/dashboard\/user\/products\/add-product/, /^\/dashboard\/user\/products\/update-product/, /^\/dashboard\/user\/orders\/purchase-history/, /^\/dashboard\/user\/orders\/sales-history/],
+
+    admin: [/^\/admin/, /^\/user/, /^\/checkout/, /^\/profile/, /^\/dashboard\/user\/products/, /^\/dashboard\/user\/products\/add-product/, /^\/dashboard\/user\/products\/update-product/, /^\/dashboard\/user\/orders\/purchase-history/, /^\/dashboard\/user\/orders\/sales-history/],
 };
 
 export const middleware = async (request: NextRequest) => {
     console.log("Hello world!")
     const { pathname } = request.nextUrl
     const userInfo = await getCurrentUser();
-    // {
-    //     identifier: 'bokhari@gmail.com',
-    //     role: 'user',
-    //     iat: 1741415070,
-    //     exp: 1742019870
-    //   }
 
     if (!userInfo) {
         if (authRoutes.includes(pathname)) {
@@ -46,6 +41,12 @@ export const middleware = async (request: NextRequest) => {
 export const config = {
     matcher: [
         "/user/:page",
-        "/checkout"
+        "/checkout",
+        "/profile",
+        "/user/dashboard/products",
+        "/user/dashboard/products/add-product",
+        "/user/dashboard/products/update-product",
+        "/user/dashboard/orders/purchase-history",
+        "/user/dashboard/orders/sales-history",
     ]
 }
