@@ -1,10 +1,13 @@
 import Profile from "@/components/modules/Profile";
+import { getMe } from "@/services/User";
 import { Fragment } from "react";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const { data: profileData } = await getMe();
+  // console.log(profile);
   return (
     <Fragment>
-      <Profile />
+      <Profile profileData={profileData} />
     </Fragment>
   );
 }

@@ -1,4 +1,4 @@
-
+"use server"
 
 export const addOrder = async (orderData: any, token: string) => {
     try {
