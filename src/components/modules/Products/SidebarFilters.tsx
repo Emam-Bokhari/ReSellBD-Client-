@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react"; // Close icon
+import { X } from "lucide-react";
 import { districts } from "@/constants/districts";
 
 const categories = [
