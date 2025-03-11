@@ -58,7 +58,7 @@ export default function Navbar() {
           {/* left side */}
           {/* logo */}
           <Link href="/" className="block">
-            <div className="border-2 border-blue-500">
+            <div>
               <Image src={logo} width={80} height={80} alt="Logo" />
             </div>
           </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
             </div>
 
             {/* signin button */}
-            <div className=" border-2 border-green-500 flex flex-col md:flex-row md:justify-end gap-2 md:gap-4">
+            <div className="  flex flex-col md:flex-row md:justify-end gap-2 md:gap-4">
               <Link href="/login" className="block ">
                 <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] cursor-pointer">
                   <LogInIcon size={18} />
