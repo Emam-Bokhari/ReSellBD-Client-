@@ -91,7 +91,7 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
               </SelectContent>
             </Select>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 border-2 border-red-500 flex-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 flex-1">
             {paginatedProducts.map((product) => (
               <ProductCard key={product?._id} product={product} />
             ))}

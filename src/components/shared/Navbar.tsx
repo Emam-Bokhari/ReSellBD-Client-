@@ -53,7 +53,7 @@ export default function Navbar() {
 
   return (
     <Container>
-      <nav className="border-2 border-red-500 mt-4">
+      <nav className="mt-4">
         <div className="flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between">
           {/* left side */}
           {/* logo */}
