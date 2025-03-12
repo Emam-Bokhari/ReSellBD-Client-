@@ -46,7 +46,7 @@ export default function DashboardOverview({
         </CardHeader>
         <CardContent className="text-center">
           <div className="text-3xl font-bold text-gray-800">
-            BDT{totalSales}
+            BDT {totalSales}
           </div>
         </CardContent>
       </Card>
