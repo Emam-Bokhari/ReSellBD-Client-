@@ -25,36 +25,36 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
   const itemsPerPage = 10;
 
   const filteredProducts = products
-    .filter((product) =>
+    ?.filter((product) =>
       [product.title, product.category, product.location].some((field) =>
         field?.toLowerCase().includes(searchTerm.toLowerCase())
       )
     )
-    .filter((product) =>
+    ?.filter((product) =>
       selectedCategories.length === 0
         ? true
         : selectedCategories.includes(product.category)
     )
-    .filter((product) =>
+    ?.filter((product) =>
       selectedConditions.length === 0
         ? true
         : selectedConditions.includes(product.condition)
     )
-    .filter((product) =>
+    ?.filter((product) =>
       selectedDistricts.length === 0
         ? true
         : selectedDistricts.includes(product.location)
     )
-    .filter((product) => (isAvailable ? product.status === "available" : true))
-    .sort((a, b) => {
+    ?.filter((product) => (isAvailable ? product.status === "available" : true))
+    ?.sort((a, b) => {
       if (sortOrder === "low-to-high") return a.price - b.price;
       if (sortOrder === "high-to-low") return b.price - a.price;
       return 0;
     });
 
   //  pagination
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-  const paginatedProducts = filteredProducts.slice(
+  const totalPages = Math.ceil(filteredProducts?.length / itemsPerPage);
+  const paginatedProducts = filteredProducts?.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -92,7 +92,7 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
             </Select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 flex-1">
-            {paginatedProducts.map((product) => (
+            {paginatedProducts?.map((product) => (
               <ProductCard key={product?._id} product={product} />
             ))}
           </div>

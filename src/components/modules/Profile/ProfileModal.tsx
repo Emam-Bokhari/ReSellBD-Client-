@@ -20,8 +20,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { getToken } from "@/redux/features/getToken";
 import { IUser } from "@/types";
+import { updateProfile } from "@/services/User";
 
 export default function ProfileModal({
   profile,
@@ -53,8 +53,6 @@ export default function ProfileModal({
     setFormData({ ...formData, gender: value || "male" });
   };
 
-  const token = getToken();
-
   const handleSubmit = async () => {
     // URL validation function
     const isValidURL = (url: string) => {
@@ -76,18 +74,7 @@ export default function ProfileModal({
     }
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/users/update-profile`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      const data = await response.json();
+      const data = await updateProfile(formData);
 
       if (data?.success) {
         toast.success("Your Profile updated successfully");

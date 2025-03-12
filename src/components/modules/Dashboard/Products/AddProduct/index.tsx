@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { districts } from "@/constants/districts";
-import { getToken } from "@/redux/features/getToken";
 import { addProduct } from "@/services/Product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
@@ -89,8 +88,6 @@ export default function AddProductForm() {
     appendImage({ value: "" });
   };
 
-  const token = getToken();
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const images = data.images.map((image: { value: string }) => image.value);
     const modifiedData = {
@@ -100,7 +97,7 @@ export default function AddProductForm() {
     };
 
     try {
-      const response = await addProduct(modifiedData, token);
+      const response = await addProduct(modifiedData);
       if (response?.success) {
         toast.success("Product is created successfully");
         router.push("/user/dashboard/products");

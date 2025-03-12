@@ -34,13 +34,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getToken } from "@/redux/features/getToken";
 import { toast } from "sonner";
 import { TOrder } from "@/types/order";
 import { updateOrderStatusById } from "@/services/Order";
 
-export default function SalesHistory() {
-  const [salesHistory, setSalesHistory] = React.useState<TOrder[]>([]);
+export default function SalesHistory({ salesHistory }: { salesHistory: any }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -49,48 +47,12 @@ export default function SalesHistory() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  const token = getToken();
-  //   fetch sales history from API
-  React.useEffect(() => {
-    const fetchSalesHistory = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API}/transactions/sales-history`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch sales history");
-        }
-        const result = await response.json();
-
-        // filter out items where itemID is null
-        const filteredSalesHistory =
-          result?.data?.result?.filter(
-            (order: TOrder) => order?.itemID !== null
-          ) || [];
-
-        setSalesHistory(filteredSalesHistory);
-      } catch (error: any) {
-        toast.error(error.message);
-      }
-    };
-
-    fetchSalesHistory();
-  }, [token]);
-
   // update order status
   const handleUpdateOrderStatus = async (id: string, status: string) => {
     try {
-      const response = await updateOrderStatusById(id, { status }, token);
+      const response = await updateOrderStatusById(id, { status });
       if (response?.success) {
         toast.success("Order status updated successfully");
-        // router.push("/products");
       } else {
         toast.error(response.error[0]?.message);
       }

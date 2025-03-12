@@ -1,9 +1,12 @@
 import PurchaseHistory from "@/components/modules/Dashboard/Orders/PurchaseHistory";
+import { getPurchaseHistory } from "@/services/Order";
 
-export default function PurchaseHistoryPage() {
+export default async function PurchaseHistoryPage() {
+  const { data } = await getPurchaseHistory();
+  const purchaseHistory = data?.result ?? [];
   return (
     <div className="p-4">
-      <PurchaseHistory />
+      <PurchaseHistory purchaseHistory={purchaseHistory} />
     </div>
   );
 }

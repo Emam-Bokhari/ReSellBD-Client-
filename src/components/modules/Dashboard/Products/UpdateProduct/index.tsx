@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { districts } from "@/constants/districts";
-import { getToken } from "@/redux/features/getToken";
 import { Plus } from "lucide-react";
 import {
   FieldValues,
@@ -27,10 +26,10 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { TProduct } from "@/types";
 import { toast } from "sonner";
 import { updateProductById } from "@/services/Product";
+import { useRouter } from "next/navigation";
 
 const conditionOptions = [
   { value: "new", label: "New" },
@@ -89,8 +88,6 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
     appendImage({ value: "" });
   };
 
-  const token = getToken();
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const images = data.images.map((image: { value: string }) => image.value);
     const modifiedData = {
@@ -100,11 +97,7 @@ export default function UpdateProductForm({ product }: { product: TProduct }) {
     };
 
     try {
-      const response = await updateProductById(
-        product._id,
-        modifiedData,
-        token
-      );
+      const response = await updateProductById(product._id, modifiedData);
       if (response?.success) {
         toast.success("Product updated successfully");
         router.push("/user/dashboard/products");

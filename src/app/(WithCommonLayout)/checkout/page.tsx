@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Checkout from "@/components/modules/Checkout";
 import { getProductById } from "@/services/Product";
+import { getMe } from "@/services/User";
 
 export default async function CheckoutPage({
   searchParams,
@@ -10,10 +11,11 @@ export default async function CheckoutPage({
   const productId = (await searchParams)?.id || "";
 
   const { data: product } = await getProductById(productId);
+  const { data: profile } = await getMe();
 
   return (
     <Fragment>
-      <Checkout product={product} />
+      <Checkout product={product} profile={profile} />
     </Fragment>
   );
 }

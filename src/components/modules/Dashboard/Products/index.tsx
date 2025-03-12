@@ -37,17 +37,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-
 import Link from "next/link";
 import { toast } from "sonner";
 import { TProduct } from "@/types";
-import { getToken } from "@/redux/features/getToken";
 import { deleteProductById, updateProductStatusById } from "@/services/Product";
-import { useRouter } from "next/navigation";
 
-export default function ManageProducts() {
-  const router = useRouter();
-  const [products, setProducts] = React.useState<TProduct[]>([]);
+export default function ManageProducts({ products }: { products: TProduct[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -55,46 +50,13 @@ export default function ManageProducts() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const token = getToken();
-  console.log(token);
-
-  // fetch products from API
-  React.useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API}/listings/byUser`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const result = await response.json();
-
-        setProducts(result?.data?.result || []);
-      } catch (error: any) {
-        toast.error(error.message);
-      }
-    };
-
-    fetchProducts();
-  }, [token]);
-
-  console.log(products);
 
   // delete a product
   const handleDeleteProduct = async (id: string) => {
     try {
-      const response = await deleteProductById(id, token);
+      const response = await deleteProductById(id);
       if (response?.success) {
         toast.success("Product deleted successfully");
-        router.push("/user/dashboard/products");
       } else {
         toast.error(response.error[0]?.message);
       }
@@ -106,7 +68,7 @@ export default function ManageProducts() {
   // product status update
   const handleUpdateProductStatus = async (id: string, status: string) => {
     try {
-      const response = await updateProductStatusById(id, { status }, token);
+      const response = await updateProductStatusById(id, { status });
       if (response?.success) {
         toast.success("Product status updated successfully");
       } else {
@@ -126,12 +88,11 @@ export default function ManageProducts() {
         const firstImage = images?.[0];
 
         return firstImage ? (
-          <div className="w-[60px] h-[60px] overflow-hidden rounded-lg">
+          <div className="w-[60px] h-[60px] relative overflow-hidden rounded-lg ">
             <Image
               src={firstImage}
-              width={60}
-              height={60}
               alt="Thumbnail Image"
+              fill
               className="object-cover"
             />
           </div>

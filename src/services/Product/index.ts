@@ -1,8 +1,6 @@
 "use server"
-
 import { revalidateTag } from "next/cache";
-
-
+import { cookies } from "next/headers";
 
 export const getAllProducts = async () => {
     try {
@@ -32,16 +30,40 @@ export const getProductById = async (id: string) => {
     }
 }
 
-export const addProduct = async (productData: any, token: string) => {
+
+export const getProductsByUser = async () => {
     try {
-        if (!token) {
-            throw new Error("No token found");
-        }
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API}/listings/byUser`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: (await cookies()).get("accessToken")!.value,
+                },
+            }
+        );
+
+        const data = await response.json();
+
+        return data;
+
+
+    } catch (error: any) {
+        throw new Error(error)
+    }
+};
+
+
+
+export const addProduct = async (productData: any,) => {
+    try {
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token
+                "Authorization": (await cookies()).get("accessToken")!.value
             },
             body: JSON.stringify(productData),
         })
@@ -54,16 +76,14 @@ export const addProduct = async (productData: any, token: string) => {
     }
 }
 
-export const updateProductById = async (id: string, updatedProductData: any, token: string) => {
+export const updateProductById = async (id: string, updatedProductData: any) => {
     try {
-        if (!token) {
-            throw new Error("No token found!");
-        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token,
+                "Authorization": (await cookies()).get("accessToken")!.value,
             },
             body: JSON.stringify(updatedProductData)
         })
@@ -75,16 +95,14 @@ export const updateProductById = async (id: string, updatedProductData: any, tok
     }
 }
 
-export const updateProductStatusById = async (id: string, status: any, token: string) => {
+export const updateProductStatusById = async (id: string, status: any) => {
     try {
-        if (!token) {
-            throw new Error("No token found!")
-        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}/status`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token,
+                "Authorization": (await cookies()).get("accessToken")!.value,
             },
             body: JSON.stringify(status)
         })
@@ -96,16 +114,14 @@ export const updateProductStatusById = async (id: string, status: any, token: st
     }
 }
 
-export const deleteProductById = async (id: string, token: string) => {
+export const deleteProductById = async (id: string) => {
     try {
-        if (!token) {
-            throw new Error("No token found!")
-        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token,
+                "Authorization": (await cookies()).get("accessToken")!.value,
             },
         })
         revalidateTag("PRODUCT");

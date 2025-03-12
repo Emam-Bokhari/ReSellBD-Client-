@@ -31,12 +31,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getToken } from "@/redux/features/getToken";
-import { toast } from "sonner";
 import { TOrder } from "@/types/order";
 
-export default function PurchaseHistory() {
-  const [purchaseHistory, setPurchaseHistory] = React.useState<TOrder[]>([]);
+export default function PurchaseHistory({
+  purchaseHistory,
+}: {
+  purchaseHistory: any;
+}) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -44,41 +45,7 @@ export default function PurchaseHistory() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-
-  const token = getToken();
-  //   fetch purchase history from API
-  React.useEffect(() => {
-    const fetchPurchaseHistory = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API}/transactions/purchases-history`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch purchase history");
-        }
-        const result = await response.json();
-
-        // filter out items where itemID is null
-        const filteredPurchaseHistory =
-          result?.data?.result?.filter(
-            (order: TOrder) => order?.itemID !== null
-          ) || [];
-
-        setPurchaseHistory(filteredPurchaseHistory);
-      } catch (error: any) {
-        toast.error(error.message);
-      }
-    };
-
-    fetchPurchaseHistory();
-  }, [token]);
+  console.log(purchaseHistory);
 
   const columns: ColumnDef<TOrder>[] = [
     {

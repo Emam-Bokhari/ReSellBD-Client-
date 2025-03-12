@@ -8,39 +8,16 @@ import { getToken } from "@/redux/features/getToken";
 import { addOrder } from "@/services/Order";
 import { IUser, TProduct } from "@/types";
 import Image from "next/image";
-import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function Checkout({ product }: { product: TProduct }) {
-  const [profile, setProfile] = useState<IUser | undefined>(undefined);
+export default function Checkout({
+  product,
+  profile,
+}: {
+  product: TProduct;
+  profile: IUser;
+}) {
   const token = getToken();
-
-  // fetch profile data from API
-  React.useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API}/users/me`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch profile data");
-        }
-        const result = await response.json();
-        setProfile(result?.data);
-      } catch (error: any) {
-        toast.error(error.message);
-      }
-    };
-
-    fetchProfile();
-  }, [token]);
 
   const handleConfirmPay = async () => {
     const itemID = product._id;

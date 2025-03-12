@@ -23,7 +23,7 @@ export default async function ProductSection() {
       </div>
       {/* cards */}
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {products?.slice(0, 12)?.map((product) => (
+        {products?.slice(0, 16)?.map((product) => (
           <ProductCard key={product?._id} product={product} />
         ))}
       </div>
