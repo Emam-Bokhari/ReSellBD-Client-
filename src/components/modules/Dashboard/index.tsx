@@ -3,8 +3,12 @@ import { PlusIcon, ShoppingCartIcon, TrendingUpIcon } from "lucide-react";
 
 export default function DashboardOverview({
   totalProductsAdded,
+  totalPurchases,
+  totalSales,
 }: {
   totalProductsAdded: number;
+  totalPurchases: number;
+  totalSales: number;
 }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
@@ -28,7 +32,9 @@ export default function DashboardOverview({
           <ShoppingCartIcon className="h-6 w-6 text-green-500" />
         </CardHeader>
         <CardContent className="text-center">
-          <div className="text-3xl font-bold text-gray-800">320</div>
+          <div className="text-3xl font-bold text-gray-800">
+            {totalPurchases}
+          </div>
         </CardContent>
       </Card>
 
@@ -39,7 +45,7 @@ export default function DashboardOverview({
           <TrendingUpIcon className="h-6 w-6 text-red-500" />
         </CardHeader>
         <CardContent className="text-center">
-          <div className="text-3xl font-bold text-gray-800">$12,500</div>
+          <div className="text-3xl font-bold text-gray-800">${totalSales}</div>
         </CardContent>
       </Card>
     </div>

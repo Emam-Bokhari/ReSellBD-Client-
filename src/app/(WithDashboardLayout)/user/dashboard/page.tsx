@@ -1,8 +1,19 @@
 import DashboardOverview from "@/components/modules/Dashboard";
-import { getTotalProductsAdded } from "@/services/Analytics";
+import {
+  getTotalProductsAdded,
+  getTotalPurchases,
+  getTotalSales,
+} from "@/services/Analytics";
 
 export default async function DashboardHomePage() {
   const { data: totalProductsAdded } = await getTotalProductsAdded();
-  console.log(totalProductsAdded);
-  return <DashboardOverview totalProductsAdded={totalProductsAdded} />;
+  const { data: totalPurchases } = await getTotalPurchases();
+  const { data: totalSales } = await getTotalSales();
+  return (
+    <DashboardOverview
+      totalProductsAdded={totalProductsAdded}
+      totalPurchases={totalPurchases}
+      totalSales={totalSales}
+    />
+  );
 }
