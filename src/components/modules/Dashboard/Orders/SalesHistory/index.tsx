@@ -48,7 +48,6 @@ export default function SalesHistory() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  console.log(salesHistory);
 
   const token = getToken();
   //   fetch sales history from API
@@ -87,7 +86,6 @@ export default function SalesHistory() {
 
   // update order status
   const handleUpdateOrderStatus = async (id: string, status: string) => {
-    console.log(id, status);
     try {
       const response = await updateOrderStatusById(id, { status }, token);
       if (response?.success) {

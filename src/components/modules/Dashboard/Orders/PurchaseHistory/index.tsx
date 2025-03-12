@@ -44,7 +44,6 @@ export default function PurchaseHistory() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  console.log(purchaseHistory);
 
   const token = getToken();
   //   fetch purchase history from API

@@ -88,7 +88,7 @@ export default function ProfileModal({
         }
       );
       const data = await response.json();
-      console.log(data);
+
       if (data?.success) {
         toast.success("Your Profile updated successfully");
       } else {

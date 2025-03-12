@@ -30,7 +30,6 @@ export const metadata: Metadata = {
   ],
   referrer: "origin-when-cross-origin",
   robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1.0",
   publisher: "ResellBD Inc.",
   authors: [
     { name: "Moshfiqur Rahman", url: "https://www.facebook.com/emambokhari99" },

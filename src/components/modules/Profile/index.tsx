@@ -16,7 +16,6 @@ export default function Profile({ profileData }: { profileData: IUser }) {
 
   const handleSave = async (updatedProfile: any) => {
     setProfile(updatedProfile);
-    console.log("Profile Updated:", updatedProfile);
   };
 
   return (

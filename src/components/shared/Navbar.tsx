@@ -43,7 +43,6 @@ export default function Navbar() {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth?.user);
   const dispatch = useAppDispatch();
-  console.log(user);
 
   const handleLogout = async () => {
     dispatch(logout());
@@ -190,15 +189,17 @@ export default function Navbar() {
                         Home
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link
-                        href="/profile"
-                        className="flex gap-2 text-base items-center"
-                      >
-                        <User className="w-6 h-6  " />
-                        Profile
-                      </Link>
-                    </DropdownMenuItem>
+                    {user && (
+                      <DropdownMenuItem>
+                        <Link
+                          href="/profile"
+                          className="flex gap-2 text-base items-center"
+                        >
+                          <User className="w-6 h-6  " />
+                          Profile
+                        </Link>
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem>
                       <Link
                         href="/products"

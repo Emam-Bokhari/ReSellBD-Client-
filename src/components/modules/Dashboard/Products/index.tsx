@@ -56,6 +56,7 @@ export default function ManageProducts() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const token = getToken();
+  console.log(token);
 
   // fetch products from API
   React.useEffect(() => {
@@ -85,6 +86,8 @@ export default function ManageProducts() {
     fetchProducts();
   }, [token]);
 
+  console.log(products);
+
   // delete a product
   const handleDeleteProduct = async (id: string) => {
     try {
@@ -106,7 +109,6 @@ export default function ManageProducts() {
       const response = await updateProductStatusById(id, { status }, token);
       if (response?.success) {
         toast.success("Product status updated successfully");
-        router.push("/products");
       } else {
         toast.error(response.error[0]?.message);
       }

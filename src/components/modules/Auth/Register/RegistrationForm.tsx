@@ -37,7 +37,7 @@ export default function RegistrationForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     try {
       const response = await registerUser(data);
-      // console.log(response);
+
       if (response?.success) {
         toast.success(response?.message);
         router.push("/login");
