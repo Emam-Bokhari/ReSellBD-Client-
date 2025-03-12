@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import SalesHistory from "@/components/modules/Dashboard/Orders/SalesHistory";
 import { getSalesHistory } from "@/services/Order";
 

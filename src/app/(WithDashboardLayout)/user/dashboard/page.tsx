@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import DashboardOverview from "@/components/modules/Dashboard";
 import {
   getTotalProductsAdded,
