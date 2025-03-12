@@ -36,6 +36,9 @@ export const getProductsByUser = async () => {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_API}/listings/byUser`,
             {
+                next: {
+                    tags: ["PRODUCT"]
+                },
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
