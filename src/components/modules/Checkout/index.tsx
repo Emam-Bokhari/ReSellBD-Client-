@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { getToken } from "@/redux/features/getToken";
 import { addOrder } from "@/services/Order";
 import { IUser, TProduct } from "@/types";
 import Image from "next/image";
@@ -17,12 +16,10 @@ export default function Checkout({
   product: TProduct;
   profile: IUser;
 }) {
-  const token = getToken();
-
   const handleConfirmPay = async () => {
     const itemID = product._id;
     try {
-      const response = await addOrder({ itemID }, token);
+      const response = await addOrder({ itemID });
       if (response?.success) {
         toast.success("Your order placed successfully");
 

@@ -8,7 +8,9 @@ export default async function CheckoutPage({
 }: {
   searchParams: Promise<{ id?: string }>;
 }) {
-  const productId = (await searchParams)?.id || "";
+  const params = await searchParams;
+
+  const productId = params?.id || "";
 
   const { data: product } = await getProductById(productId);
   const { data: profile } = await getMe();

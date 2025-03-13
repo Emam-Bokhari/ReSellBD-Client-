@@ -2,16 +2,14 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export const addOrder = async (orderData: any, token: string) => {
+export const addOrder = async (orderData: any) => {
     try {
-        if (!token) {
-            throw new Error("No token found");
-        }
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/transactions`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": token
+                "Authorization": (await cookies()).get("accessToken")!.value,
             },
             body: JSON.stringify(orderData),
         })

@@ -8,6 +8,7 @@ export const getMe = async () => {
             headers: {
                 "Authorization": (await cookies()).get("accessToken")!.value
             },
+            // cache: "no-store"
         })
         const data = await res.json()
         return data;

@@ -23,6 +23,7 @@ const wishlistSlice = createSlice({
             state.items = state.items.filter(item => item._id !== action.payload);
 
         },
+
     },
 });
 
