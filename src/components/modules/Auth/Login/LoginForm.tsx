@@ -1,8 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import appleLogo from "@/assets/apple.png";
 import { Separator } from "@/components/ui/separator";
 import {
   FieldValues,
@@ -44,6 +42,7 @@ export default function LoginForm() {
 
   const {
     formState: { isSubmitting },
+    setValue,
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
@@ -64,6 +63,18 @@ export default function LoginForm() {
     }
   };
 
+  // function to prefill the form for "User"
+  const handleUserButtonClick = () => {
+    setValue("identifier", "user@gmail.com");
+    setValue("password", "user123");
+  };
+
+  // function to prefill the form for "Admin"
+  const handleAdminButtonClick = () => {
+    setValue("identifier", "admin@gmail.com");
+    setValue("password", "admin123");
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
       <Card className="w-full max-w-md md:p-6 shadow-xl">
@@ -75,16 +86,23 @@ export default function LoginForm() {
         <CardContent>
           <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <Button type="submit" className="w-full cursor-not-allowed">
-                <Image
-                  src={appleLogo}
-                  width={22}
-                  height={22}
-                  className="invert mr-1"
-                  alt="apple logo"
-                />
-                Continue with Apple
-              </Button>
+              <div className="flex flex-col gap-4 md:flex-row ">
+                <Button
+                  type="submit"
+                  onClick={handleUserButtonClick}
+                  className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white flex-1  "
+                >
+                  User
+                </Button>
+                <Button
+                  type="submit"
+                  onClick={handleAdminButtonClick}
+                  className="cursor-pointer bg-orange-600 hover:bg-orange-700 text-white flex-1 "
+                >
+                  Admin
+                </Button>
+              </div>
+
               <Separator />
               <p className="text-center mt-0 text-[#989BA4]">or Login with</p>
               <FormField

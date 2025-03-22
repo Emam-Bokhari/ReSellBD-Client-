@@ -102,7 +102,7 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 cursor-pointer"
+              className="bg-[#F59E0B] hover:bg-[#D97706] text-white cursor-pointer"
             >
               Previous
             </Button>
@@ -115,7 +115,7 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
               }
               disabled={currentPage === totalPages}
               size="sm"
-              className="bg-blue-600 hover:bg-blue-500 cursor-pointer"
+              className="bg-[#F59E0B] hover:bg-[#D97706] text-white cursor-pointer"
             >
               Next
             </Button>
