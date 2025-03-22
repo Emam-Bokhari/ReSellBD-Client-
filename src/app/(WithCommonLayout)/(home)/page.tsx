@@ -6,6 +6,7 @@ import HeroSection from "@/components/modules/Home/HeroSection";
 import HowItWorksSection from "@/components/modules/Home/HowItWorks";
 import NewsletterSection from "@/components/modules/Home/NewsLetter";
 import ProductSection from "@/components/modules/Home/Product";
+import ProductOffer from "@/components/modules/Home/ProductOffer";
 import { Fragment } from "react";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <CategorySection />
       <ProductSection />
       <FeatureAds />
+      <ProductOffer />
       <BlogSection />
       <NewsletterSection />
     </Fragment>
