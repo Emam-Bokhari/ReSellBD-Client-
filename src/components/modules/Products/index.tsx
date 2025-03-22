@@ -13,6 +13,7 @@ import {
 import { TProduct } from "@/types";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ProductSkeleton from "@/components/ui/core/skeleton/ProductSkeleton";
 
 export default function AllProducts({ products }: { products: TProduct[] }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -92,6 +93,14 @@ export default function AllProducts({ products }: { products: TProduct[] }) {
             </Select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 flex-1">
+            {paginatedProducts?.length === 0
+              ? Array.from({ length: 12 }).map((_, index) => (
+                  <ProductSkeleton key={index} />
+                ))
+              : paginatedProducts?.map((product) => (
+                  <ProductCard key={product?._id} product={product} />
+                ))}
+
             {paginatedProducts?.map((product) => (
               <ProductCard key={product?._id} product={product} />
             ))}
