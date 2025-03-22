@@ -5,6 +5,7 @@ import usaFlag from "@/assets/united-states.png";
 import loveIcon from "@/assets/love.png";
 import { Button } from "../ui/button";
 import {
+  Book,
   Building2,
   HelpCircle,
   Home,
@@ -143,6 +144,9 @@ export default function Navbar() {
               <li>
                 <NavigationLink route="FAQs" path="/faq" />
               </li>
+              <li>
+                <NavigationLink route="Blogs" path="/blogs" />
+              </li>
             </ul>
 
             {/* wishlist and profile */}
@@ -259,6 +263,15 @@ export default function Navbar() {
                         >
                           <HelpCircle className="w-6 h-6" />
                           FAQs
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link
+                          href="/blogs"
+                          className="flex gap-2 text-base items-center"
+                        >
+                          <Book className="w-6 h-6" />
+                          Blogs
                         </Link>
                       </DropdownMenuItem>
                       {user && (
