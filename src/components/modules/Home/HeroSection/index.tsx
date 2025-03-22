@@ -1,10 +1,11 @@
 import Container from "@/components/shared/Container";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
     <Container>
-      <div className=" mt-4">
+      <div className=" mt-4 ">
         <section className="relative w-full h-[400px] lg:h-[500px] flex items-center justify-center  text-white overflow-hidden rounded-lg">
           {/* Background Image */}
           <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dvpqm6zct/image/upload/v1741017225/Banner-Image_ielnfx.jpg')] bg-cover bg-center"></div>
@@ -32,9 +33,11 @@ export default function HeroSection() {
 
             {/* ShadCN UI Button */}
             <div className="mt-4 text-center">
-              <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937]">
-                Explore Now
-              </Button>
+              <Link href="/products" className="block">
+                <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#1F2937] cursor-pointer">
+                  Explore Now
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
