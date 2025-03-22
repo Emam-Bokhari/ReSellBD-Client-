@@ -55,7 +55,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
           className="rounded-t-lg "
         />
       </div>
-      <CardContent className="p-4 space-y-2 mt-0">
+      <CardContent className="px-4 space-y-2 mt-0">
         {/* title & price */}
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold capitalize">
@@ -84,7 +84,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
         </div>
 
         {/* action buttons */}
-        <div className="mt-4 flex justify-between">
+        <div className="mt-4 flex justify-between mb-4">
           {/* details button */}
           <Link href={`products/${product?._id}`}>
             <button className="text-sm text-blue-500 hover:text-blue-700 font-semibold cursor-pointer">

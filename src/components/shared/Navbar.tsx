@@ -39,6 +39,149 @@ import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/authSlice";
 import { logoutFromCookie } from "@/services/Auth";
 import { useRouter } from "next/navigation";
+import newArrivalImage from "@/assets/new-arrival.jpg";
+
+// In your MegaMenu component
+export const MegaMenu = () => {
+  return (
+    <div className="absolute left-0 mt-2 max-w-screen bg-white shadow-lg rounded-md p-4 grid gap-4 z-50 invisible group-hover:visible">
+      {/* category and new arrivals */}
+      <div className="flex gap-20">
+        {/* category */}
+        <div>
+          <h3 className="font-bold">Category</h3>
+          <div className="mt-4">
+            <ul className="space-y-2">
+              <li>
+                <NavigationLink route="Property" path="#" />
+              </li>
+              <li>
+                <NavigationLink route="Home" path="#" />
+              </li>
+              <li>
+                <NavigationLink route="Vehicles" path="#" />
+              </li>
+              <NavigationLink route="Electronics" path="#" />
+              <li></li>
+              <li>
+                <NavigationLink route="Mobile" path="#" />
+              </li>
+              <li>
+                <NavigationLink route="Pets" path="#" />
+              </li>
+              <li>
+                <NavigationLink route="Sports" path="#" />
+              </li>
+              <li>
+                <NavigationLink route="Clothes" path="#" />
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* new arrivals */}
+        <div>
+          <h3 className="font-bold">New Arrivals</h3>
+
+          <div className="mt-4">
+            <ul className="space-y-2">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <li key={index}>
+                  <Link href="#">
+                    <div className=" overflow-hidden  rounded-lg p-4  w-full flex gap-4 bg-[#FAF6F2] ">
+                      <div className="w-50 h-20 relative">
+                        <Image
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s"
+                          alt="product image"
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-lg "
+                        />
+                      </div>
+                      <div>
+                        <p className="text-sm hover:underline">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit. Laboriosam, reprehenderit.
+                        </p>
+                        <p>BDT 500</p>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* actionable images */}
+        <div className=" flex gap-4">
+          <div className="flex flex-col gap-4">
+            <div className="w-50 h-50 relative">
+              <Image
+                src={newArrivalImage}
+                alt="New Arrival Image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+            <div className="w-50 h-50 relative">
+              <Image
+                src="https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D"
+                alt="New Arrival Image"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+          </div>
+          <div className="w-50 h-auto relative">
+            <Image
+              src="https://images.unsplash.com/photo-1523206489230-c012c64b2b48?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="New Arrival Image"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="font-bold">Blogs</h3>
+
+        <div className="mt-4">
+          <ul className="space-y-2">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <li key={index}>
+                <Link href="#">
+                  <div className=" overflow-hidden  rounded-lg w-[400px] flex gap-4 ">
+                    <div className="w-50 h-20 relative">
+                      <Image
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s"
+                        alt="product image"
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-lg "
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm hover:underline">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Minus, eius?
+                      </p>
+                      <p className="text-sm">Electronics</p>
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Navbar() {
   const router = useRouter();
@@ -128,12 +271,19 @@ export default function Navbar() {
 
           <div className="mt-4  flex justify-end lg:justify-between lg:mb-4">
             {/* menubar */}
-            <ul className="hidden lg:flex gap-4 text-lg ">
+
+            <ul className="hidden lg:flex gap-4 text-lg">
               <li>
                 <NavigationLink route="Home" path="/" />
               </li>
               <li>
                 <NavigationLink route="Products" path="/products" />
+                <MegaMenu />
+              </li>
+              <li className="group relative">
+                {/* MegaMenu will open when hovering over Products */}
+                <NavigationLink route="Discover" path="#" />
+                <MegaMenu />
               </li>
               <li>
                 <NavigationLink route="About Us" path="/aboutUs" />
@@ -148,7 +298,6 @@ export default function Navbar() {
                 <NavigationLink route="Blogs" path="/blogs" />
               </li>
             </ul>
-
             {/* wishlist and profile */}
             <div className="flex items-center gap-4">
               <Link href="/wishlist">

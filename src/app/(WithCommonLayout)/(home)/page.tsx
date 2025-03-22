@@ -7,6 +7,7 @@ import HowItWorksSection from "@/components/modules/Home/HowItWorks";
 import NewsletterSection from "@/components/modules/Home/NewsLetter";
 import ProductSection from "@/components/modules/Home/Product";
 import ProductOffer from "@/components/modules/Home/ProductOffer";
+
 import { Fragment } from "react";
 
 export default function HomePage() {
@@ -14,7 +15,9 @@ export default function HomePage() {
     <Fragment>
       <HeroSection />
       <AboutUsSection />
+
       <HowItWorksSection />
+
       <CategorySection />
       <ProductSection />
       <FeatureAds />
