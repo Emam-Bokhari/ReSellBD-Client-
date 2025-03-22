@@ -5,6 +5,7 @@ import { TProduct } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import RelatedProducts from "./RelatedProducts";
 
 export default function ProductDetails({ product }: { product: TProduct }) {
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
@@ -124,6 +125,8 @@ export default function ProductDetails({ product }: { product: TProduct }) {
           </div>
         </div>
       </div>
+      {/* related product */}
+      <RelatedProducts />
     </Container>
   );
 }
