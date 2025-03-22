@@ -147,6 +147,7 @@ export const MegaMenu = () => {
         </div>
       </div>
 
+      {/* blogs */}
       <div>
         <h3 className="font-bold">Blogs</h3>
 
@@ -278,7 +279,6 @@ export default function Navbar() {
               </li>
               <li>
                 <NavigationLink route="Products" path="/products" />
-                <MegaMenu />
               </li>
               <li className="group relative">
                 {/* MegaMenu will open when hovering over Products */}

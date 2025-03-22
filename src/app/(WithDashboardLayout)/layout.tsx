@@ -28,7 +28,10 @@ export const ProfileMenu = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          <Link href="/profile" className="flex gap-2 text-base items-center ">
+          <Link
+            href="/user/dashboard/user-profile"
+            className="flex gap-2 text-base items-center "
+          >
             <User className="w-6 h-6" />
             Profile
           </Link>
@@ -64,7 +67,7 @@ export default async function DashboardLayout({
             {/* Profile Icon - Right Side */}
             <div className="ml-auto flex gap-2">
               <ProfileMenu />
-              <div>
+              <div className="hidden lg:block">
                 <p className="text-sm text-[#1F2937] font-semibold">
                   Moshfiqur Rahman
                 </p>
