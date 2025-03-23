@@ -15,9 +15,7 @@ export default function HomePage() {
     <Fragment>
       <HeroSection />
       <AboutUsSection />
-
       <HowItWorksSection />
-
       <CategorySection />
       <ProductSection />
       <FeatureAds />
