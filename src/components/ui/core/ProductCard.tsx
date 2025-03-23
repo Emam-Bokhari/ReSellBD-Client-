@@ -61,7 +61,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
           <h2 className="text-lg font-semibold capitalize">
             {title?.length > 20 ? title?.slice(0, 20) + "..." : title}
           </h2>
-          <span className="text-primary font-bold">BDT {price}</span>
+          <span className=" font-bold">BDT {price}</span>
         </div>
 
         {/* category & wishlist */}
@@ -86,7 +86,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
         {/* action buttons */}
         <div className="mt-4 flex justify-between mb-4">
           {/* details button */}
-          <Link href={`products/${product?._id}`}>
+          <Link href={`/products/${product?._id}`}>
             <button className="text-sm text-blue-500 hover:text-blue-700 font-semibold cursor-pointer">
               Details
             </button>
