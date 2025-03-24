@@ -11,7 +11,7 @@ export default async function BlogSection() {
   );
   return (
     <Container>
-      <div className="mt-4">
+      <div className="mt-12">
         <SectionTitle title="Latest Blog" />
 
         <div className="mt-4">

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function AboutUsSection() {
   return (
-    <Container className="mt-4">
+    <Container className="mt-12">
       <div className="space-y-4">
         <SectionTitle title="About ResellBD" />
         <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 gap-4 mt-4">
@@ -61,7 +61,7 @@ export default function AboutUsSection() {
           </div>
         </div>
 
-        <section>
+        {/* <section>
           <h2 className="text-lg font-semibold">KEY FEATURES</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             <Card className="p-6">
@@ -94,9 +94,9 @@ export default function AboutUsSection() {
               </CardContent>
             </Card>
           </div>
-        </section>
+        </section> */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card className="p-6  ">
             <CardContent>
               <h3 className="text-3xl font-bold text-green-500">10k+</h3>
@@ -110,7 +110,7 @@ export default function AboutUsSection() {
               <p className="text-gray-900">Customer Satisfaction</p>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </div>
     </Container>
   );

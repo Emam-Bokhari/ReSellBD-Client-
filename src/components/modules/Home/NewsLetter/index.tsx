@@ -32,7 +32,7 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="w-full  mt-4 px-4 md:px-10 lg:px-20 flex justify-center items-center">
+    <section className="w-full  my-12 px-4 md:px-10 lg:px-20 flex justify-center items-center">
       <div className="max-w-2xl w-full text-center">
         <h2 className="text-xl font-bold text-[#1F2937] mb-4">
           JOIN OUR NEWSLETTER NOW

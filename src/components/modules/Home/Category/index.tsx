@@ -28,7 +28,7 @@ const categories = [
 export default function CategorySection() {
   return (
     <Container>
-      <div className="mt-4">
+      <div className="mt-12">
         <SectionTitle title="Shop by Category" />
 
         {/* categories card */}

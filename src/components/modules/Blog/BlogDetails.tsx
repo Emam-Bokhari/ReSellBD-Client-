@@ -57,7 +57,7 @@ export default function BlogDetails({ blog }: { blog: TBlog }) {
           </div>
         </div>
 
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-4 mb-12">
           {/* title */}
           <h3 className="text-lg font-semibold">{blog?.title}</h3>
           {/* introduction */}
@@ -70,7 +70,7 @@ export default function BlogDetails({ blog }: { blog: TBlog }) {
           </p>
           {/* tags */}
           {blog?.tags?.length ? (
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 md:items-center">
               <h3 className="text-lg font-semibold">Tags:</h3>
               <div className="flex gap-4 flex-wrap">
                 {blog?.tags?.map((tag, index) => {

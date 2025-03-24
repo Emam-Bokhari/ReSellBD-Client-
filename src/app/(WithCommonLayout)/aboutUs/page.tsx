@@ -37,7 +37,7 @@ export default function AboutUsPage() {
           </p>
         </div>
 
-        <div className="space-y-6 mt-6">
+        <div className="space-y-6 mt-12">
           {/* features section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -58,7 +58,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* vision section */}
-          <div className="flex flex-col xl:flex-row gap-4 items-center ">
+          <div className="flex flex-col xl:flex-row gap-4 items-center mt-12">
             <Image
               src={visionImage}
               alt="Our Vision"
@@ -98,8 +98,8 @@ export default function AboutUsPage() {
           </div>
 
           {/* testimonials section */}
-          <div>
-            <h2 className="text-2xl font-bold text-center mb-6">
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-center mb-4">
               What Our Customers Say
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -121,7 +121,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* faq Section */}
-          <div>
+          <div className="my-12">
             <h2 className="text-2xl font-bold text-center mb-4">
               Frequently Asked Questions
             </h2>

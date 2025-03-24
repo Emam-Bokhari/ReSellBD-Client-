@@ -11,7 +11,7 @@ export default async function ProductSection() {
   const { data: products }: { data: TProduct[] } = await getAllProducts();
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-12">
       <div className="flex justify-between">
         <SectionTitle title="Products" />
         <div>

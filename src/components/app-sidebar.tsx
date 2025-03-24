@@ -46,6 +46,13 @@ const data = {
       items: [{ title: "Users", url: "/admin/dashboard/users" }],
     },
     {
+      title: "Blogs",
+      items: [
+        { title: "Blogs", url: "/admin/dashboard/blogs" },
+        { title: "Add Blog", url: "/admin/dashboard/blogs/add-blog" },
+      ],
+    },
+    {
       title: "Contacts",
       items: [
         { title: "Contacts", url: "/admin/dashboard/contacts" },

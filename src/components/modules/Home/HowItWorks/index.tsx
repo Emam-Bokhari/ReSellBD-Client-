@@ -30,7 +30,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <Container className="mt-4">
+    <Container className="mt-12">
       <SectionTitle title="How It Works" />
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
         {steps.map((step, index) => (

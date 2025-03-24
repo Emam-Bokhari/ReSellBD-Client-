@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function FeatureAds() {
   return (
-    <div className="bg-[#f3981b]">
-      <Container className="mt-4 relative w-full h-auto">
+    <div className="bg-[#f3981b] mt-12">
+      <Container className=" relative w-full h-auto">
         <div className="w-full  flex flex-col md:flex-row items-center justify-between py-6 rounded-lg  gap-4 md:gap-0">
           <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-red-500 flex items-center justify-center rounded-lg">

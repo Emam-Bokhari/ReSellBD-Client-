@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 export default function FaqPage() {
   return (
     <Container className="mt-4">
-      <div className="space-y-8">
+      <div className="space-y-12 mb-12">
         <div className="bg-white p-4 shadow-md rounded-lg flex justify-between items-center">
           <h1 className="text-2xl font-bold">Help/FAQ</h1>
           <div>
@@ -55,7 +55,7 @@ export default function FaqPage() {
             check product listings and their details before making any purchase.
           </p>
           <div className="flex flex-col lg:flex-row gap-4">
-            <Card className="p-4 bg-blue-100">
+            <Card className="p-4 bg-gradient-to-r from-[#F59E0B] to-[#F8C06D]">
               <h3 className="font-bold">What are verified products?</h3>
               <p>
                 Verified products are those that have been authenticated by our
@@ -63,7 +63,7 @@ export default function FaqPage() {
                 our standards for sale.
               </p>
             </Card>
-            <Card className="p-4 bg-red-100">
+            <Card className="p-4 bg-[#DBEAFE]">
               <h3 className="font-bold">What does best price mean?</h3>
               <p>
                 Best price refers to products that offer the highest value for

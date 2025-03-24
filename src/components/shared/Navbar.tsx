@@ -39,7 +39,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/authSlice";
 import { logoutFromCookie } from "@/services/Auth";
 import { useRouter } from "next/navigation";
-import newArrivalImage from "@/assets/new-arrival.jpg";
+import newArrivalImage from "@/assets/new-arrivals.jpg";
 import { toast } from "sonner";
 import { getAllProducts } from "@/services/Product";
 import { TBlog, TProduct } from "@/types";
@@ -74,7 +74,7 @@ export const MegaMenu = () => {
   }, []);
 
   return (
-    <div className="absolute left-0 mt-2 max-w-screen bg-white shadow-xl rounded-md p-4 grid gap-4 z-50 invisible group-hover:visible">
+    <div className="absolute left-0 mt-2 max-w-screen bg-white shadow-2xl rounded-md p-4 grid gap-4 z-100 invisible group-hover:visible">
       {/* category and new arrivals */}
       <div className="flex gap-20">
         {/* category */}
@@ -152,16 +152,17 @@ export const MegaMenu = () => {
         {/* actionable images */}
         <div className=" flex gap-4">
           <div className="flex flex-col gap-4">
-            <div className="w-50 h-50 relative">
-              <Image
-                src={newArrivalImage}
-                alt="New Arrival Image"
-                width={160}
-                height={80}
-                className="rounded-lg object-cover"
-              />
-            </div>
-            <div className="w-50 h-50 relative">
+            <Link href="/products">
+              <div className="w-50 h-50 relative overflow-hidden rounded-lg flex-1">
+                <Image
+                  src={newArrivalImage}
+                  alt="Thumbnail Image"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </Link>
+            <div className="w-50 h-50 relative flex-1">
               <Image
                 src="https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA%3D"
                 alt="New Arrival Image"
@@ -247,7 +248,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`transition-all duration-300 ${
+      className={` ${
         isScrolled
           ? "lg:fixed lg:top-0 lg:left-0 lg:w-full lg:bg-[#FAF6F2] lg:z-50 lg:shadow-md"
           : ""
@@ -255,7 +256,11 @@ export default function Navbar() {
     >
       <Container>
         <nav className="mt-4">
-          <div className="flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between">
+          <div
+            className={`flex lg:items-center gap-4 flex-col lg:flex-row lg:justify-between ${
+              isScrolled ? "hidden" : ""
+            }`}
+          >
             {/* left side */}
             {/* logo */}
             <Link href="/" className="block">

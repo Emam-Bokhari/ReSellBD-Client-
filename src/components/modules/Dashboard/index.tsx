@@ -15,7 +15,7 @@ export default function DashboardOverview({
       {/* total products added card */}
       <Card className="bg-white shadow-lg rounded-lg border border-gray-200">
         <CardHeader className="flex justify-between items-center">
-          <div className="text-xl font-semibold">Total Products Added</div>
+          <div className="text-xl font-bold">Total Products Added</div>
           <PlusIcon className="h-6 w-6 text-blue-500" />
         </CardHeader>
         <CardContent className="text-center">
@@ -28,7 +28,7 @@ export default function DashboardOverview({
       {/* total purchases card */}
       <Card className="bg-white shadow-lg rounded-lg border border-gray-200">
         <CardHeader className="flex justify-between items-center">
-          <div className="text-xl font-semibold">Total Purchases</div>
+          <div className="text-xl font-bold">Total Purchases</div>
           <ShoppingCartIcon className="h-6 w-6 text-green-500" />
         </CardHeader>
         <CardContent className="text-center">
@@ -41,13 +41,11 @@ export default function DashboardOverview({
       {/* total sales card */}
       <Card className="bg-white shadow-lg rounded-lg border border-gray-200">
         <CardHeader className="flex justify-between items-center">
-          <div className="text-xl font-semibold">Total Sales</div>
+          <div className="text-xl font-bold">Total Sales</div>
           <TrendingUpIcon className="h-6 w-6 text-red-500" />
         </CardHeader>
         <CardContent className="text-center">
-          <div className="text-3xl font-bold text-gray-800">
-            BDT {totalSales}
-          </div>
+          <div className="text-3xl font-bold text-gray-800">৳ {totalSales}</div>
         </CardContent>
       </Card>
     </div>

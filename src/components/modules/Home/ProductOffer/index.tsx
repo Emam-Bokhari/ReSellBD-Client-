@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function ProductOffer() {
   return (
     <div
-      className="relative flex items-center justify-between p-10 h-[350px] lg:h-[450px] xl:h-[550px] bg-cover bg-center mt-4"
+      className="relative flex items-center justify-between p-10 h-[350px] lg:h-[450px] xl:h-[550px] bg-cover bg-center mt-12"
       style={{
         backgroundImage:
           'url("https://res.cloudinary.com/dvpqm6zct/image/upload/v1742627421/product-offer_hyalvd.jpg")',
