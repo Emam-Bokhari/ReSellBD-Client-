@@ -45,9 +45,17 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="w-full  my-12 px-4 md:px-10 lg:px-20 flex justify-center items-center">
-      <div className="max-w-2xl w-full text-center">
-        <h2 className="text-xl font-bold text-[#1F2937] mb-4">
+    <section
+      className="w-full my-12 px-4 py-10   flex justify-center items-center relative bg-cover bg-center"
+      style={{
+        backgroundImage:
+          'url("https://res.cloudinary.com/dvpqm6zct/image/upload/v1742832907/news-letter-banner_wbmj9p.jpg")',
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-40"></div>{" "}
+      {/* Overlay */}
+      <div className="max-w-2xl w-full text-center relative z-10">
+        <h2 className="text-xl font-bold text-white mb-4">
           JOIN OUR NEWSLETTER NOW
         </h2>
         <FormProvider {...form}>
@@ -59,13 +67,14 @@ export default function NewsletterSection() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-800">
+                      <FormLabel className="text-gray-200">
                         Your Email Address
                       </FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           placeholder="Enter your email address"
+                          className="text-white"
                         />
                       </FormControl>
                       <FormMessage />
@@ -83,7 +92,7 @@ export default function NewsletterSection() {
             </div>
           </form>
         </FormProvider>
-        <p className="text-sm text-gray-600 mt-2">
+        <p className="text-sm text-gray-300 mt-2">
           Subscribe now and never miss an update.
         </p>
       </div>

@@ -26,6 +26,8 @@ import { useRouter } from "next/navigation";
 import { verifyToken } from "@/lib/verifyToken";
 import { setUser } from "@/redux/features/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import logo from "@/assets/Logo.png";
+import Image from "next/image";
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
@@ -81,6 +83,11 @@ export default function LoginForm() {
         <CardHeader>
           <CardTitle className=" text-xl lg:text-2xl font-bold text-center">
             Login to Your Account
+            <div className="flex justify-center mt-4">
+              <Link href="/" className="block">
+                <Image src={logo} alt="logo" width={60} height={60} />
+              </Link>
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent>
