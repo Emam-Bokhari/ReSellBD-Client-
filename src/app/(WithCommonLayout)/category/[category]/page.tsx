@@ -2,6 +2,7 @@ import Container from "@/components/shared/Container";
 import ProductCardVariant from "@/components/ui/core/ProductCardVariant";
 import { getProductsByCategory } from "@/services/Product";
 import { TProduct } from "@/types";
+import { Fragment } from "react";
 
 export default async function CategoryPage({
   params,
@@ -12,6 +13,16 @@ export default async function CategoryPage({
   const { data: products }: { data: TProduct[] } = await getProductsByCategory(
     category
   );
+
+  if (!(products ?? false)) {
+    return (
+      <Fragment>
+        <p className="text-center mt-[5%] text-gray-500 text-lg">
+          No data found with this category
+        </p>
+      </Fragment>
+    );
+  }
 
   return (
     <Container className="mt-4">

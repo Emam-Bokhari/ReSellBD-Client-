@@ -24,7 +24,7 @@ export default function BlogDetails({ blog }: { blog: TBlog }) {
 
   return (
     <Fragment>
-      <Container className="border-2 border-red-500  ">
+      <Container>
         {/* Thumbnail Image */}
         <div className="relative w-full h-[250px] md:h-[300px] lg:h-[400px] xl:h-[500px] ">
           <Image

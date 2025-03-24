@@ -40,11 +40,41 @@ import { logout } from "@/redux/features/authSlice";
 import { logoutFromCookie } from "@/services/Auth";
 import { useRouter } from "next/navigation";
 import newArrivalImage from "@/assets/new-arrival.jpg";
+import { toast } from "sonner";
+import { getAllProducts } from "@/services/Product";
+import { TBlog, TProduct } from "@/types";
+import { getAllBlogs } from "@/services/Blog";
 
 // In your MegaMenu component
 export const MegaMenu = () => {
+  const [product, setProduct] = useState<TProduct[] | null>([]);
+  const [blogs, setBlogs] = useState<TBlog[] | null>([]);
+
+  const sortedProducts = product?.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  const sortedBlogs = blogs?.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await getAllProducts();
+        const { data: blogData } = await getAllBlogs();
+
+        setProduct(data);
+        setBlogs(blogData);
+      } catch (err) {
+        toast.error("Something went wring!");
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="absolute left-0 mt-2 max-w-screen bg-white shadow-lg rounded-md p-4 grid gap-4 z-50 invisible group-hover:visible">
+    <div className="absolute left-0 mt-2 max-w-screen bg-white shadow-xl rounded-md p-4 grid gap-4 z-50 invisible group-hover:visible">
       {/* category and new arrivals */}
       <div className="flex gap-20">
         {/* category */}
@@ -53,27 +83,30 @@ export const MegaMenu = () => {
           <div className="mt-4">
             <ul className="space-y-2">
               <li>
-                <NavigationLink route="Property" path="#" />
+                <NavigationLink route="Property" path="/category/property" />
               </li>
               <li>
-                <NavigationLink route="Home" path="#" />
+                <NavigationLink route="Home" path="/category/home" />
               </li>
               <li>
-                <NavigationLink route="Vehicles" path="#" />
+                <NavigationLink route="Vehicles" path="/category/vehicles" />
               </li>
-              <NavigationLink route="Electronics" path="#" />
+              <NavigationLink
+                route="Electronics"
+                path="/category/electronics"
+              />
               <li></li>
               <li>
-                <NavigationLink route="Mobile" path="#" />
+                <NavigationLink route="Mobile" path="/category/mobile" />
               </li>
               <li>
-                <NavigationLink route="Pets" path="#" />
+                <NavigationLink route="Pets" path="/category/pets" />
               </li>
               <li>
-                <NavigationLink route="Sports" path="#" />
+                <NavigationLink route="Sports" path="/category/sports" />
               </li>
               <li>
-                <NavigationLink route="Clothes" path="#" />
+                <NavigationLink route="Clothes" path="/category/clothes" />
               </li>
             </ul>
           </div>
@@ -85,25 +118,28 @@ export const MegaMenu = () => {
 
           <div className="mt-4">
             <ul className="space-y-2">
-              {Array.from({ length: 3 }).map((_, index) => (
-                <li key={index}>
-                  <Link href="#">
-                    <div className=" overflow-hidden  rounded-lg p-4  w-full flex gap-4 bg-[#FAF6F2] ">
-                      <div className="w-50 h-20 relative">
-                        <Image
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s"
-                          alt="product image"
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-lg "
-                        />
-                      </div>
+              {sortedProducts?.slice(0, 3).map((product) => (
+                <li key={product._id}>
+                  <Link href={`/products/${product._id}`}>
+                    <div className="h-[100px] w-[400px] rounded-lg p-4  flex gap-4 bg-[#FAF6F2]">
+                      {/* Image Container with Fixed Size */}
+
+                      <Image
+                        src={product.images[0]}
+                        alt="product image"
+                        width={80}
+                        height={40}
+                        className="rounded-lg object-cover"
+                      />
+
+                      {/* Product Info */}
                       <div>
                         <p className="text-sm hover:underline">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Laboriosam, reprehenderit.
+                          {product.title}
                         </p>
-                        <p>BDT 500</p>
+                        <p className="text-base text-[#F59E0B]">
+                          BDT {product.price}
+                        </p>
                       </div>
                     </div>
                   </Link>
@@ -120,9 +156,9 @@ export const MegaMenu = () => {
               <Image
                 src={newArrivalImage}
                 alt="New Arrival Image"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
+                width={160}
+                height={80}
+                className="rounded-lg object-cover"
               />
             </div>
             <div className="w-50 h-50 relative">
@@ -153,25 +189,22 @@ export const MegaMenu = () => {
 
         <div className="mt-4">
           <ul className="space-y-2">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <li key={index}>
-                <Link href="#">
+            {sortedBlogs?.slice(0, 3).map((blog) => (
+              <li key={blog._id}>
+                <Link href={`/blogs/${blog._id}`}>
                   <div className=" overflow-hidden  rounded-lg w-[400px] flex gap-4 ">
                     <div className="w-50 h-20 relative">
                       <Image
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s"
+                        src={blog.thumbnail}
                         alt="product image"
                         layout="fill"
                         objectFit="cover"
                         className="rounded-lg "
                       />
                     </div>
-                    <div>
-                      <p className="text-sm hover:underline">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Minus, eius?
-                      </p>
-                      <p className="text-sm">Electronics</p>
+                    <div className="w-full">
+                      <p className="text-sm hover:underline">{blog.title}</p>
+                      <p className="text-sm text-[#F59E0B]">{blog.category}</p>
                     </div>
                   </div>
                 </Link>
