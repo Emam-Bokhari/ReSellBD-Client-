@@ -174,7 +174,7 @@ export default function ManageBlogs({ blogs }: { blogs: TBlog[] }) {
 
               <DropdownMenuItem>
                 <Link
-                  href={`/user/dashboard/blogs/update-blog/${blog?._id}`}
+                  href={`/admin/dashboard/blogs/update-blog/${blog?._id}`}
                   className="flex gap-2"
                 >
                   <FaEdit className="mr-2 text-green-500" /> Edit
@@ -259,8 +259,8 @@ export default function ManageBlogs({ blogs }: { blogs: TBlog[] }) {
           </DropdownMenu>
         </div>
       </div>
-      <div className="rounded-md border mt-4">
-        <Table>
+      <div className="rounded-md border mt-4 overflow-x-auto">
+        <Table className="min-w-full">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
