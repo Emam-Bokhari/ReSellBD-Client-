@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as React from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import {
   ColumnDef,
   ColumnFiltersState,

@@ -44,10 +44,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppinsClassName} antialiased bg-[#F8F9FA]`}>
+      <body className={`${poppinsClassName}  bg-[#F8F9FA]`}>
         <Providers>
           {children}
-          <Toaster position="top-right" richColors />
+          <Toaster
+            expand
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "#F7B84B",
+                color: "#000000",
+              },
+            }}
+          />
         </Providers>
       </body>
     </html>

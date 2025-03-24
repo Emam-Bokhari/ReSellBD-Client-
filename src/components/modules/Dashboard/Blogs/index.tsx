@@ -39,7 +39,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { TBlog, TProduct } from "@/types";
+import { TBlog } from "@/types";
 import { deleteBlogById } from "@/services/Blog";
 import moment from "moment-timezone";
 

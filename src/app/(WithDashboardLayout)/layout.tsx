@@ -8,7 +8,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { getCurrentUser } from "@/services/Auth";
 
 import { Fragment } from "react";
 

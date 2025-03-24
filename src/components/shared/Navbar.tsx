@@ -15,7 +15,6 @@ import {
   Mail,
   Phone,
   ShoppingBag,
-  User,
   UserCircle2,
   UserPlus,
 } from "lucide-react";
@@ -65,8 +64,8 @@ export const MegaMenu = () => {
 
         setProduct(data);
         setBlogs(blogData);
-      } catch (err) {
-        toast.error("Something went wring!");
+      } catch (err: any) {
+        toast.error(`Something went wrong! ${err.message || ""}`);
       }
     }
 
@@ -186,7 +185,7 @@ export const MegaMenu = () => {
 
       {/* blogs */}
       <div>
-        <h3 className="font-bold">Blogs</h3>
+        <h3 className="font-bold">New Blogs</h3>
 
         <div className="mt-4">
           <ul className="space-y-2">

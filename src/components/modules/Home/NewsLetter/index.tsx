@@ -14,7 +14,8 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import Link from "next/link";
+import { addNewsLetter } from "@/services/NewsLetter";
+import { toast } from "sonner";
 
 export default function NewsletterSection() {
   const form = useForm({
@@ -28,7 +29,19 @@ export default function NewsletterSection() {
   } = form;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      const response = await addNewsLetter(data);
+      if (response?.success) {
+        toast.success(
+          "📩 You’re subscribed! Expect great updates in your inbox"
+        );
+        form.reset();
+      } else {
+        toast.error(response.error[0]?.message);
+      }
+    } catch {
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
@@ -65,19 +78,13 @@ export default function NewsletterSection() {
                 type="submit"
                 disabled={isSubmitting}
               >
-                SIGN UP
+                Subscribe
               </Button>
             </div>
           </form>
         </FormProvider>
         <p className="text-sm text-gray-600 mt-2">
-          Will be used in accordance with our{" "}
-          <Link
-            href="#"
-            className="font-semibold text-gray-800 hover:underline "
-          >
-            Privacy Policy
-          </Link>
+          Subscribe now and never miss an update.
         </p>
       </div>
     </section>

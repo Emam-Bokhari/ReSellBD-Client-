@@ -4,7 +4,6 @@ import yellowShadeImage from "@/assets/yellow-shade-bg.jpg";
 import { Globe, Mail, User } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { FaFacebook } from "react-icons/fa6";
-import { Button } from "@/components/ui/button";
 import { IUser } from "@/types";
 import { useState } from "react";
 import Link from "next/link";

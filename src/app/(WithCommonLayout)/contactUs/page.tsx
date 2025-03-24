@@ -8,8 +8,6 @@ import {
   FaLinkedin,
   FaWhatsapp,
 } from "react-icons/fa6";
-import { IoIosSend } from "react-icons/io";
-import { FiMessageSquare } from "react-icons/fi";
 import { MdEmail } from "react-icons/md";
 import Container from "@/components/shared/Container";
 
