@@ -351,15 +351,6 @@ export default function Navbar() {
                       <DropdownMenuGroup>
                         <DropdownMenuItem>
                           <Link
-                            href="/profile"
-                            className="flex gap-2 text-base items-center "
-                          >
-                            <User className="w-6 h-6" />
-                            Profile
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Link
                             href="/user/dashboard"
                             className="flex items-center gap-2 text-base"
                           >
@@ -399,17 +390,6 @@ export default function Navbar() {
                           Home
                         </Link>
                       </DropdownMenuItem>
-                      {user && (
-                        <DropdownMenuItem>
-                          <Link
-                            href="/profile"
-                            className="flex gap-2 text-base items-center"
-                          >
-                            <User className="w-6 h-6  " />
-                            Profile
-                          </Link>
-                        </DropdownMenuItem>
-                      )}
                       <DropdownMenuItem>
                         <Link
                           href="/products"

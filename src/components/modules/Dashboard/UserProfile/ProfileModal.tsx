@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { IUser } from "@/types";
 import { updateProfile } from "@/services/User";
+import { Edit3 } from "lucide-react";
 
 export default function ProfileModal({
   profile,
@@ -54,7 +55,7 @@ export default function ProfileModal({
   };
 
   const handleSubmit = async () => {
-    // URL validation function
+    // url validation function
     const isValidURL = (url: string) => {
       if (!url) return true;
       const regex = /^(https?:\/\/)?([\w.-]+\.[a-z]{2,})(\/\S*)?$/i;
@@ -93,7 +94,7 @@ export default function ProfileModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-white cursor-pointer">
-          Update Profile
+          <Edit3 size={18} /> Update Profile
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[90vw] md:max-w-[700px]">
@@ -166,6 +167,7 @@ export default function ProfileModal({
               <Select
                 onValueChange={handleGenderChange}
                 value={formData.gender}
+                defaultValue="male"
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select Gender" />

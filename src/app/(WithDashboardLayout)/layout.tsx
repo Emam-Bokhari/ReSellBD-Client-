@@ -1,51 +1,16 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { ProfileMenu } from "@/components/modules/Dashboard/ProfileMenu";
 import DynamicBreadcrumb from "@/components/shared/Dashboard/DynamicBreadcrumb";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { LogOutIcon, User } from "lucide-react";
-import Link from "next/link";
-import { Fragment } from "react";
+import { getCurrentUser } from "@/services/Auth";
 
-export const ProfileMenu = () => {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem>
-          <Link
-            href="/user/dashboard/user-profile"
-            className="flex gap-2 text-base items-center "
-          >
-            <User className="w-6 h-6" />
-            Profile
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <span className="flex gap-2 items-center text-base cursor-pointer">
-            <LogOutIcon className="w-6 h-6" />
-            Logout
-          </span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-};
+import { Fragment } from "react";
 
 export default async function DashboardLayout({
   children,
@@ -65,16 +30,8 @@ export default async function DashboardLayout({
             </div>
 
             {/* Profile Icon - Right Side */}
-            <div className="ml-auto flex gap-2">
+            <div className="ml-auto">
               <ProfileMenu />
-              <div className="hidden lg:block">
-                <p className="text-sm text-[#1F2937] font-semibold">
-                  Moshfiqur Rahman
-                </p>
-                <p className="text-xs text-gray-500">
-                  moshfiqurrahman37@gmail.com
-                </p>
-              </div>
             </div>
           </header>
           {children}
