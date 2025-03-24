@@ -24,7 +24,9 @@ export default function Footer() {
           {/* brand section */}
           <div className="space-y-2">
             <h2 className="text-2xl font-bold">ReSellBD</h2>
-            <Image src={logo} width={80} height={80} alt="logo" />
+            <Link href="/" className="block">
+              <Image src={logo} width={80} height={80} alt="logo" />
+            </Link>
             <p className="text-gray-400">
               Elevating your reselling experience with trust & excellence.
             </p>

@@ -8,13 +8,14 @@ export const authRoutes = ["/login", "/register"]
 const roleBasedPrivateRoutes = {
     user: [/^\/user/, /^\/checkout/, /^\/profile/, /^\/dashboard\/user\/products/, /^\/dashboard\/user\/products\/add-product/, /^\/dashboard\/user\/products\/update-product/, /^\/dashboard\/user\/orders\/purchase-history/, /^\/dashboard\/user\/orders\/sales-history/],
 
-    admin: [/^\/admin/, /^\/user/, /^\/checkout/, /^\/profile/, /^\/dashboard\/user\/products/, /^\/dashboard\/user\/products\/add-product/, /^\/dashboard\/user\/products\/update-product/, /^\/dashboard\/user\/orders\/purchase-history/, /^\/dashboard\/user\/orders\/sales-history/],
+    admin: [/^\/admin/, /^\/user/, /^\/checkout/, /^\/profile/, /^\/dashboard\/user\/products/, /^\/dashboard\/user\/products\/add-product/, /^\/dashboard\/user\/products\/update-product/, /^\/dashboard\/user\/orders\/purchase-history/, /^\/dashboard\/user\/orders\/sales-history/, /^\/dashboard\/admin\/blogs/, /^\/dashboard\/admin\/blogs\/add-blog/, /^\/dashboard\/admin\/blogs\/update-blog/, /^\/dashboard\/admin\/users/, /^\/dashboard\/admin\/contacts/, /^\/dashboard\/admin\/newsLetters/,],
 };
 
 export const middleware = async (request: NextRequest) => {
 
     const { pathname } = request.nextUrl
     const userInfo = await getCurrentUser();
+    console.log(userInfo)
 
     if (!userInfo) {
         if (authRoutes.includes(pathname)) {
@@ -49,5 +50,12 @@ export const config = {
         "/user/dashboard/products/update-product",
         "/user/dashboard/orders/purchase-history",
         "/user/dashboard/orders/sales-history",
+        "/admin/dashboard/blogs",
+        "/admin/dashboard/blogs/add-blog",
+        "/admin/dashboard/blogs/update-blog",
+        "/admin/dashboard/blogs/update-blog/:page",
+        "/admin/dashboard/users",
+        "/admin/dashboard/contacts",
+        "/admin/dashboard/newsLetters",
     ]
 }

@@ -5,7 +5,7 @@ import { TProduct } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import RelatedProducts from "../Products/RelatedProducts";
+// import RelatedProducts from "../Products/RelatedProducts";
 
 export default function CategoryWiseProductDetails({
   product,
@@ -130,7 +130,7 @@ export default function CategoryWiseProductDetails({
         </div>
       </div>
       {/* related product */}
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
     </Container>
   );
 }
