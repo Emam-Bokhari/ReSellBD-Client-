@@ -6,7 +6,8 @@ export const getAllProducts = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings`, {
             next: {
-                tags: ["PRODUCT"]
+                tags: ["PRODUCT"],
+                revalidate: 30,
             }
         });
         const data = await res.json();
@@ -20,7 +21,8 @@ export const getProductsByCategory = async (category: string) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/category/${category}`, {
             next: {
-                tags: ["PRODUCT"]
+                tags: ["PRODUCT"],
+                revalidate: 30,
             }
         });
         const data = await res.json();
@@ -33,7 +35,7 @@ export const getProductsByCategory = async (category: string) => {
 export const getProductById = async (id: string) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/listings/${id}`, {
-            // cache: "no-store",
+            cache: "no-store",
             next: {
                 tags: ["PRODUCT"]
             }
@@ -52,7 +54,8 @@ export const getProductsByUser = async () => {
             `${process.env.NEXT_PUBLIC_BASE_API}/listings/byUser`,
             {
                 next: {
-                    tags: ["PRODUCT"]
+                    tags: ["PRODUCT"],
+                    revalidate: 30,
                 },
                 method: "GET",
                 headers: {
