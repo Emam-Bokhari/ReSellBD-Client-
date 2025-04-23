@@ -9,6 +9,7 @@ import Link from "next/link";
 
 export default async function ProductSection() {
   const { data: products }: { data: TProduct[] } = await getAllProducts();
+  console.log(products);
 
   return (
     <Container className="mt-12">
