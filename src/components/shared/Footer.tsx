@@ -47,7 +47,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/aboutUs"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
                   <Info size={18} className="inline mr-2" />
@@ -65,7 +65,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/contact"
+                  href="/contactUs"
                   className="hover:text-[#F59E0B] duration-150 transition"
                 >
                   <Contact size={18} className="inline mr-2" />
